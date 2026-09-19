@@ -1,0 +1,20 @@
+/* ==========================================================================
+   FONTS / SETTINGS
+   ========================================================================== */
+/// Font family
+:root {
+    --font-primary: 'Space Mono', monospace;
+    --font-secondary: 'Anton', sans-serif;
+    --font-black: 'Archivo Black', sans-serif;
+
+    --font-size-content: #{typo(14px, 16px)};
+    --font-size-small: #{typo(14px)};
+
+    --font-size-button: 1.25rem;
+
+    /// Grosseur des textes
+    --font-size-h1: #{typo(128px, 200px)};
+    --font-size-h2: #{typo(24px, 40px)};
+    --font-size-h3: #{typo(28px, 34px)};
+    --font-size-h4: #{typo(18px, 22px)};
+}

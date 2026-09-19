@@ -1,0 +1,56 @@
+{
+  "name": "timtools",
+  "version": "1.5.6",
+  "private": true,
+  "type": "module",
+  "description": "Stack de développement frontend",
+  "author": {
+    "name": "Matt et JF"
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=development gulp --openssl-legacy-provider",
+    "build": "cross-env NODE_ENV=production gulp --openssl-legacy-provider build"
+  },
+  "devDependencies": {
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@babel/register": "^8.0.1",
+    "autoprefixer": "^10.5.4",
+    "babel-loader": "10.1.1",
+    "browser-sync": "3.0.4",
+    "cross-env": "10.1.0",
+    "del": "8.0.1",
+    "gulp": "5.0.1",
+    "gulp-babel": "^8.1.0",
+    "gulp-if": "3.0.0",
+    "gulp-jsbeautifier": "3.0.1",
+    "gulp-newer": "1.4.0",
+    "gulp-plumber": "1.2.1",
+    "gulp-postcss": "10.0.0",
+    "gulp-sass": "6.0.1",
+    "gulp-sourcemaps": "2.6.5",
+    "gulp-twig": "1.2.0",
+    "node-notifier": "10.0.1",
+    "sass": "^1.103.1",
+    "svg-spritemap-webpack-plugin": "^5.1.4",
+    "webpack": "^5.109.2",
+    "webpack-stream": "7.0.0"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "main": "index.js",
+  "license": "MIT"
+}

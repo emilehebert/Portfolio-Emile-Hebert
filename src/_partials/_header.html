@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Nom du site</title>
+
+        <link rel="stylesheet" href="styles/main.css" />
+
+        <!-- <script>
+            // C'est nouveau ça, ça va permettre au php dans WordPress de retrouver le fichier icons.svg
+            var iconsPath = "<?php bloginfo('template_url') ?>/dist/";
+        </script> -->
+        <script src="scripts/main.js" defer></script>
+    </head>
+
+    <body>
+        <!-- Zone header -->
+            <header class="header">
+                <div class="wrapper">
+                    <a class="logo" href="index.html">
+                      <svg class="icon icon--lg">
+                        <use xlink:href="#icon-logo"></use>
+                      </svg>
+                    </a>
+                    <nav>
+                        <ul>
+                            <li><a href="#">À propos</a></li>
+                            <li><a href="#">Projets</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#" class="button">Vidéo de présentation</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>

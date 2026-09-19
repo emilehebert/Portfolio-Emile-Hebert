@@ -1,0 +1,14 @@
+/* ==========================================================================
+   LINKS / ELEMENTS
+   Style de base de tous les liens et bouton du site
+   ========================================================================== */
+
+a {
+    color: var(--color-white);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--color-primary);
+    }
+}
