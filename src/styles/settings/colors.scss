@@ -12,4 +12,17 @@
     --color-secondary: #878787;
 
     --color-background: #141212;
+
+    --gradient-background: linear-gradient(
+        0deg,
+        #1a1a1a 0%,
+        #2a2a2a 50%,
+        #101010 100%
+    );
+    --gradient-primary: linear-gradient(
+        0deg,
+        #481e20 0%,
+        var(--color-primary) 100%
+    );
+    --gradient-secondary: linear-gradient(0deg, #696969 0%, #cfcfcf 100%);
 }

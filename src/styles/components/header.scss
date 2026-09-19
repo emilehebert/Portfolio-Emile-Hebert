@@ -5,12 +5,7 @@
 .header {
     border-bottom: 1px solid var(--color-primary);
     background: #1a1a1a;
-    background: linear-gradient(
-        0deg,
-        rgba(26, 26, 26, 1) 0%,
-        rgba(42, 42, 42, 1) 50%,
-        rgba(16, 16, 16, 1) 100%
-    );
+    background: (var(--gradient-background));
     .wrapper {
         display: flex;
         justify-content: space-between;
@@ -20,6 +15,7 @@
 
     ul {
         display: flex;
+        align-items: center;
         gap: 50px;
         padding: 0;
         margin: 0;
