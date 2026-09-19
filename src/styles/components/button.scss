@@ -1,0 +1,49 @@
+/* ==========================================================================
+   button / 
+   ========================================================================== */
+
+.button {
+    background: #481e20;
+    background: linear-gradient(
+        0deg,
+        rgba(72, 30, 32, 1) 0%,
+        var(--color-primary)
+    );
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-primary);
+
+    &:hover {
+        background: #696969;
+        background: linear-gradient(
+            0deg,
+            rgba(105, 105, 105, 1) 0%,
+            rgba(207, 207, 207, 1) 100%
+        );
+        border-color: var(--color-secondary);
+        color: var(--color-white);
+    }
+
+    // Variante 2
+    &--secondary {
+        background: #696969;
+        background: linear-gradient(
+            0deg,
+            rgba(105, 105, 105, 1) 0%,
+            rgba(207, 207, 207, 1) 100%
+        );
+        border-color: var(--color-secondary);
+        color: var(--color-black);
+
+        &:hover {
+            background: #481e20;
+            background: linear-gradient(
+                0deg,
+                rgba(72, 30, 32, 1) 0%,
+                var(--color-primary)
+            );
+            border-color: var(--color-primary);
+            color: var(--color-black);
+        }
+    }
+}
