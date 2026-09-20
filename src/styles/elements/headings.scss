@@ -9,7 +9,7 @@ h4,
 h5,
 h6 {
     line-height: 1.1;
-    font-weight: bold;
+    font-weight: 400;
     margin: 0;
 }
 
@@ -17,6 +17,7 @@ h1 {
     font-family: var(--font-secondary);
     font-size: var(--font-size-h1);
     line-height: 1;
+    text-transform: uppercase;
 }
 
 h2 {
@@ -27,6 +28,7 @@ h2 {
 h3 {
     font-family: var(--font-secondary);
     font-size: var(--font-size-h3);
+    text-transform: uppercase;
 }
 
 h4 {
@@ -46,6 +48,12 @@ p {
     margin: 0;
     &.small {
         font-size: var(--font-size-small);
+    }
+}
+
+span {
+    &.accent--primary {
+        color: var(--color-primary);
     }
 }
 

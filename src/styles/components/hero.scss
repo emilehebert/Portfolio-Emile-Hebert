@@ -1,0 +1,44 @@
+/* ==========================================================================
+   hero / 
+   ========================================================================== */
+
+.hero {
+    min-height: 750px;
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 100px 0 30px;
+    }
+    .hero__content {
+        position: relative;
+    }
+    .nom {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.hero__media {
+    display: flex;
+    justify-content: center;
+
+    .window {
+        position: relative;
+        z-index: 2;
+        width: 588px;
+        .window__content {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            position: relative;
+            clip-path: inset(-100vh 0 0 0);
+        }
+    }
+    img {
+        position: absolute;
+        bottom: -275px;
+        height: 275%;
+        width: auto;
+    }
+}
