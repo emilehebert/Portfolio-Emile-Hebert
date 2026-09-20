@@ -1,0 +1,52 @@
+/* ==========================================================================
+   footer / 
+   ========================================================================== */
+
+.footer {
+    border-top: 1px solid var(--color-primary);
+    padding: 50px 0;
+    p {
+        text-align: center;
+        margin-top: var(--spacing-md);
+    }
+    .footer__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        margin: 0;
+        padding: 0;
+        li {
+            list-style: none;
+        }
+        a {
+            font-weight: 400;
+        }
+    }
+
+    .socials {
+        display: flex;
+        gap: 15px;
+    }
+
+    .coordonates {
+        a {
+            color: var(--color-primary);
+        }
+    }
+    .nom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+    .menu {
+        ul {
+            align-items: flex-end;
+        }
+    }
+}

@@ -41,3 +41,11 @@
     height: 7em;
     width: 7em;
 }
+
+.logo--icon {
+    padding: 5px;
+    background: var(--gradient-secondary);
+    border-radius: var(--border-radius);
+    color: var(--color-background);
+    border: 1px solid var(--color-secondary);
+}
