@@ -52,6 +52,10 @@ p {
     }
 }
 
+a {
+    cursor: crosshair;
+}
+
 span {
     &.accent--primary {
         color: var(--color-primary);

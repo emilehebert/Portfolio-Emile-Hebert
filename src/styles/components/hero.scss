@@ -4,11 +4,11 @@
 
 .hero {
     min-height: 750px;
+    padding: 100px 0 var(--spacing-lg);
     .wrapper {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding: 100px 0 30px;
     }
     .hero__content {
         position: relative;

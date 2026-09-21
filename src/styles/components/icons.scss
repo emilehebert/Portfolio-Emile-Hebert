@@ -42,15 +42,33 @@
     width: 7em;
 }
 
-.logo--icon {
-    padding: 5px;
+.logo--link {
+    position: relative;
     background: var(--gradient-secondary);
     border-radius: var(--border-radius);
     color: var(--color-background);
     border: 1px solid var(--color-secondary);
+    .logo--icon {
+        padding: 5px;
+    }
     &:hover {
         background: var(--gradient-primary);
         border-color: var(--color-primary);
-        //color: var(--color-white);
+        color: var(--color-black);
+        &::before {
+            content: attr(aria-label);
+            position: absolute;
+            background: var(--gradient-background);
+            padding: var(--spacing-xs);
+            border: 1px solid var(--color-secondary);
+            border-radius: var(--border-radius);
+            color: var(--color-white);
+            font-weight: 400;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            pointer-events: none;
+        }
     }
 }
