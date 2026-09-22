@@ -1,0 +1,53 @@
+/* ==========================================================================
+   projets / 
+   ========================================================================== */
+
+.projets {
+    padding: var(--spacing-lg) 0;
+    .card {
+        display: grid;
+        grid-template-columns: 7fr 5fr;
+        gap: var(--spacing-md);
+        align-items: center;
+        &:hover img {
+            filter: saturate(1);
+        }
+        &:nth-child(even) {
+            grid-template-columns: 5fr 7fr;
+            .card__content {
+                order: -1;
+            }
+        }
+    }
+
+    .cards {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+    }
+
+    .card__media {
+        .window {
+            height: 500px;
+        }
+    }
+
+    .card__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        .button {
+            text-align: center;
+        }
+    }
+
+    .tools {
+        padding: 10px;
+        background: var(--gradient-background);
+        border: 1px solid var(--color-secondary);
+        border-radius: var(--border-radius);
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+}
