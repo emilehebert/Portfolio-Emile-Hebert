@@ -13,9 +13,7 @@ projet /
     gap: var(--spacing-sm);
 }
 
-.projet-single {
-    padding: var(--spacing-xl) 0;
-
+.hero--projet {
     .info {
         display: grid;
         grid-template-columns: repeat(12, minmax(0, 1fr));
