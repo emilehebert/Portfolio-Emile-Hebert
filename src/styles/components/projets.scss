@@ -4,28 +4,10 @@
 
 .projets {
     padding: var(--spacing-lg) 0;
-    .card {
-        display: grid;
-        grid-template-columns: 7fr 5fr;
-        gap: var(--spacing-md);
-        align-items: center;
-        &:hover .window__media img {
-            filter: saturate(1);
-            transform: scale(1.08);
-        }
 
-        .window__media img {
-            transition:
-                transform 0.25s ease,
-                filter 0.25s ease;
-        }
-        &:nth-child(even) {
-            grid-template-columns: 5fr 7fr;
-            .card__content {
-                order: -1;
-            }
-        }
-    }
+    /*
+     Structure générale
+     ========================================================================== */
 
     .cards {
         display: flex;
@@ -33,28 +15,53 @@
         gap: var(--spacing-xl);
     }
 
+    .card {
+        display: grid;
+        grid-template-columns: 7fr 5fr;
+        gap: var(--spacing-md);
+        align-items: center;
+
+        &:nth-child(even) {
+            grid-template-columns: 5fr 7fr;
+
+            .card__content {
+                order: -1;
+            }
+        }
+    }
+
+    /*
+     Média (image + hover)
+     ========================================================================== */
+
     .card__media {
         .window {
             height: 500px;
         }
     }
 
+    .card:hover .window__media img {
+        filter: saturate(1);
+        transform: scale(1.08);
+    }
+
+    .window__media img {
+        transition:
+            transform 0.25s ease,
+            filter 0.25s ease;
+    }
+
+    /*
+     Contenu texte
+     ========================================================================== */
+
     .card__content {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-sm);
+
         .button {
             text-align: center;
         }
-    }
-
-    .tools {
-        padding: 10px;
-        background: var(--gradient-background);
-        border: 1px solid var(--color-secondary);
-        border-radius: var(--border-radius);
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--spacing-sm);
     }
 }
