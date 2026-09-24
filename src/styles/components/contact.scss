@@ -1,0 +1,79 @@
+/* ==========================================================================
+   form / 
+   ========================================================================== */
+
+.contact {
+    padding: var(--spacing-xl) 0;
+    h2 {
+        margin-bottom: var(--spacing-md);
+    }
+}
+
+.fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+
+    label {
+        font-size: var(--font-size-h4);
+        letter-spacing: 3%;
+        font-weight: bold;
+    }
+
+    input,
+    textarea {
+        background: var(--color-background);
+        border: 1px solid var(--color-secondary);
+        border-radius: var(--border-radius);
+        padding: var(--spacing-sm);
+        color: var(--color-white);
+
+        &:-webkit-autofill {
+            -webkit-text-fill-color: var(--color-white);
+            -webkit-box-shadow: 0 0 0px 1000px var(--color-background) inset;
+            caret-color: var(--color-white);
+        }
+    }
+}
+
+.field--message {
+    grid-column: 1 / -1;
+
+    textarea {
+        min-height: 150px;
+        resize: vertical;
+    }
+}
+
+.contact__grid {
+    display: flex;
+    gap: var(--spacing-md);
+
+    .contact__form {
+        flex: 2;
+    }
+
+    .contact__side {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}
+
+.socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+}
+
+.legal {
+    margin-top: auto;
+    text-align: center;
+}

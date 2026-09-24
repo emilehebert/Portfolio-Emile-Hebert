@@ -4,6 +4,7 @@
 
 .about {
     padding: var(--spacing-lg) 0;
+
     .about__grid {
         display: grid;
         grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -12,34 +13,9 @@
         margin-top: var(--spacing-lg);
     }
 
-    .window__content {
-        min-height: 0;
-        padding: 10px;
-    }
-
-    .window__media {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .window__media img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transform: scale(1.08);
-        filter: saturate(0);
-        transition:
-            transform 0.25s ease,
-            filter 0.25s ease;
-    }
-
-    .window__media img:hover {
-        filter: saturate(1);
-        transform: scale(1.12);
-    }
+    /*
+     Placement des blocs sur la grille
+     ========================================================================== */
 
     .friend {
         grid-column: 1 / 7;
@@ -52,12 +28,10 @@
     .cat {
         grid-column: 7 / 10;
         grid-row: 4 / 9;
-        //height: 250px;
     }
     .artist {
         grid-column: 10 / 13;
         grid-row: 4 / 9;
-        //height: 250px;
     }
     .couple {
         grid-column: 5 / 9;
@@ -72,7 +46,6 @@
         grid-column: 9 / 13;
         grid-row: 12 / 17;
     }
-
     .skill--soft {
         grid-column: 1 / 4;
         grid-row: 13 / 18;
@@ -80,19 +53,73 @@
     .skill--hard {
         grid-column: 10 / 13;
         grid-row: 17 / 22;
+    }
+    .tool {
+        grid-column: 1 / 8;
+        grid-row: 19 / 22;
+    }
+    .cta {
+        grid-column: 3 / 11;
+        grid-row: 23 / 24;
+    }
+
+    /*
+     Fenêtres / images
+     ========================================================================== */
+
+    .window__content {
+        min-height: 0;
+        padding: 10px;
+    }
+
+    .window__media {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.08);
+            filter: saturate(0);
+            transition:
+                transform 0.25s ease,
+                filter 0.25s ease;
+
+            &:hover {
+                filter: saturate(1);
+                transform: scale(1.12);
+            }
+        }
+    }
+
+    /*
+     Compétences
+     ========================================================================== */
+
+    .skill--hard {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
         h4 {
             text-align: right;
         }
     }
+
     .skill {
         ul {
-            height: 100%;
             display: flex;
             flex-direction: column;
             gap: 10px;
             list-style: none;
             padding: 0;
+            margin: 0;
         }
+
         li {
             background: var(--gradient-background);
             padding: 5px 10px;
@@ -101,33 +128,30 @@
         }
     }
 
-    .tool {
-        grid-column: 1 / 8;
-        grid-row: 20 / 22;
+    /*
+     Outils
+     ========================================================================== */
 
-        div {
-            margin-top: var(--spacing-sm);
-            padding: 10px;
-            background: var(--gradient-background);
-            border: 1px solid var(--color-secondary);
-            border-radius: var(--border-radius);
-            justify-content: space-between;
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-xs);
-        }
-        a {
-            position: relative;
-        }
+    .tool {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: fit-content;
     }
+
+    /*
+     Titre commun
+     ========================================================================== */
 
     .about--title {
-        font-weight: bold;
+        margin-bottom: var(--spacing-sm);
     }
 
+    /*
+     CTA
+     ========================================================================== */
+
     .cta {
-        grid-column: 3 / 11;
-        grid-row: 23 / 24;
         display: flex;
         align-items: center;
         justify-content: center;

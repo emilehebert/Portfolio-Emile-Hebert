@@ -13,7 +13,7 @@
 
 .accordion-title {
     font-weight: bold;
-    cursor: pointer;
+    cursor: crosshair;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -22,7 +22,7 @@
 
 .accordion-title,
 .accordion-content {
-    padding: 10px 10px;
+    padding: 5px 10px;
     background: var(--gradient-background);
     border: 1px solid var(--color-secondary);
     border-radius: var(--border-radius);

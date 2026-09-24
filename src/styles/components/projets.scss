@@ -9,8 +9,15 @@
         grid-template-columns: 7fr 5fr;
         gap: var(--spacing-md);
         align-items: center;
-        &:hover img {
+        &:hover .window__media img {
             filter: saturate(1);
+            transform: scale(1.08);
+        }
+
+        .window__media img {
+            transition:
+                transform 0.25s ease,
+                filter 0.25s ease;
         }
         &:nth-child(even) {
             grid-template-columns: 5fr 7fr;

@@ -1,0 +1,87 @@
+{% include '_partials/_header.html' %}
+
+<section class="contact">
+    <div class="wrapper">
+        <h2>On contruit quelque chose qui sort du lot?</h2>
+
+        <div class="contact__grid">
+            <div class="window contact__form">
+                <div class="window__header">
+                    <p>Contactez moi.forms</p>
+                </div>
+                <div class="window__content">
+                    <form class="fields">
+                        <div class="field field--prenom">
+                            <label for="prenom">Prénom*</label>
+                            <input type="text" id="prenom" name="prenom" placeholder="Ex.: Émile" required />
+                        </div>
+
+                        <div class="field field--nom">
+                            <label for="nom">Nom*</label>
+                            <input type="text" id="nom" name="nom" placeholder="Ex.: Hébert" required />
+                        </div>
+
+                        <div class="field field--courriel">
+                            <label for="courriel">Courriel*</label>
+                            <input type="email" id="courriel" name="courriel" placeholder="Ex.: hebert.emile96@gmail.com" required />
+                        </div>
+
+                        <div class="field field--telephone">
+                            <label for="telephone">Téléphone</label>
+                            <input type="tel" id="telephone" name="telephone" placeholder="Ex.: (438)-123-4567" />
+                        </div>
+
+                        <div class="field field--message">
+                            <label for="message">Message*</label>
+                            <textarea id="message" name="message" placeholder="Écrivez votre message ici" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="window__footer">
+                    <p class="small">[Message d'erreur]</p>
+                    <a href="#" class="button button--secondary">Envoyer</a>
+                </div>
+            </div>
+
+            <div class="contact__side">
+                <h4 class="title">Coordonnées</h4>
+                <a href="#">(438)-504-8922</a>
+                <a href="#">hebert.emile96@gmail.com</a>
+                <a href="#">Curriculum Vitæ</a>
+
+                <h4 class="title">Réseaux sociaux</h4>
+                <div class="list-icons">
+                    <a href="#" class="logo--link" aria-label="GitHub">
+                        <svg class="icon icon--lg logo--icon">
+                            <use xlink:href="#icon-github"></use>
+                        </svg>
+                    </a>
+                    <a href="#" class="logo--link" aria-label="YouTube">
+                        <svg class="icon icon--lg logo--icon">
+                            <use xlink:href="#icon-youtube"></use>
+                        </svg>
+                    </a>
+                    <a href="#" class="logo--link" aria-label="Instagram">
+                        <svg class="icon icon--lg logo--icon">
+                            <use xlink:href="#icon-instagram"></use>
+                        </svg>
+                    </a>
+                    <a href="#" class="logo--link" aria-label="Pinterest">
+                        <svg class="icon icon--lg logo--icon">
+                            <use xlink:href="#icon-pinterest"></use>
+                        </svg>
+                    </a>
+                    <a href="#" class="logo--link" aria-label="LinkedIn">
+                        <svg class="icon icon--lg logo--icon">
+                            <use xlink:href="#icon-linkedin"></use>
+                        </svg>
+                    </a>
+                </div>
+                <div class="legal">
+                    <p class="small">Tous droits réservés © 2026 Émile Hébert</p>
+                    <p class="small"><a href="#">[Utilisation de l'IA]</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
