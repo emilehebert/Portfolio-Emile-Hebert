@@ -3,11 +3,13 @@
    ========================================================================== */
 
 .accordion {
+    position: relative;
     display: flex;
     gap: var(--spacing-sm);
 
-    div {
+    .accordion-item {
         flex: 1;
+        min-width: 0;
     }
 }
 
@@ -16,8 +18,10 @@
     cursor: crosshair;
     -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
     user-select: none;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 .accordion-title,
@@ -28,8 +32,13 @@
     border-radius: var(--border-radius);
 }
 
-.accordion-title + .accordion-content {
+.accordion-content {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: var(--spacing-sm);
 }
 
 .accordion-title.is-open + .accordion-content {
