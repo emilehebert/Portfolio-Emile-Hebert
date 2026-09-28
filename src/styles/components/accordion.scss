@@ -3,17 +3,20 @@
    ========================================================================== */
 
 .accordion {
-    position: relative;
     display: flex;
+    flex-wrap: wrap;
     gap: var(--spacing-sm);
+    width: 100%;
 
     .accordion-item {
-        flex: 1;
-        min-width: 0;
+        display: contents; // titre et contenu deviennent des enfants directs du flex
     }
 }
 
 .accordion-title {
+    order: 1; // tous les titres d'abord, sur la même ligne
+    flex: 1; // ils se partagent la largeur, peu importe leur nombre
+    min-width: 0;
     font-weight: bold;
     cursor: crosshair;
     -moz-user-select: none;
@@ -26,21 +29,20 @@
 
 .accordion-title,
 .accordion-content {
-    padding: 5px 10px;
+    padding: 10px;
     background: var(--gradient-background);
     border: 1px solid var(--color-secondary);
     border-radius: var(--border-radius);
 }
 
 .accordion-content {
+    order: 2; // tous les contenus après les titres
+    flex-basis: 100%; // le contenu prend toute la largeur, donc passe sous les titres
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    margin-top: var(--spacing-sm);
 }
 
 .accordion-title.is-open + .accordion-content {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
 }

@@ -21,7 +21,12 @@
                         <div class="window__media"><img src="assets/images/projets-house-breach.webp" alt="House Breach Test" /></div>
                     </div>
                 </div>
-                <a href="index.html#projets" class="button">Revenir aux projets →</a>
+                <a href="index.html#projets" class="button">
+                    Revenir aux projets
+                    <svg class="icon">
+                        <use href="#icon-arrow"></use>
+                    </svg>
+                </a>
             </div>
             <div class="info__right">
                 <div class="window">
@@ -51,13 +56,23 @@
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <p class="accordion-title">&gt; Rôle</p>
+                        <div class="accordion-title">
+                            <svg class="icon icon--xs">
+                                <use href="#icon-chevron"></use>
+                            </svg>
+                            <p>Rôle</p>
+                        </div>
                         <div class="accordion-content">
                             <p>Mise en scène, animation figurines éclairage et rendu final.</p>
                         </div>
                     </div>
                     <div class="accordion-item">
-                        <p class="accordion-title">&gt; Usage d'IA</p>
+                        <div class="accordion-title">
+                            <svg class="icon icon--xs">
+                                <use href="#icon-chevron"></use>
+                            </svg>
+                            <p>Usage d'IA</p>
+                        </div>
                         <div class="accordion-content">
                             <p>Le projet a été réalisé sans IA. J'ai utilisé Claude pour reformuler et structurer les textes de cette fiche.</p>
                         </div>
@@ -283,16 +298,49 @@
         <h3 class="title">Bilan / Apprentissages</h3>
         <div class="accordion" data-component="Accordion" data-single-open>
             <div class="accordion-item">
-                <p class="accordion-title">Défis rencontrés</p>
+                <div class="accordion-title is-open">
+                    <svg class="icon icon--xs">
+                        <use href="#icon-chevron"></use>
+                    </svg>
+                    <p>Défis rencontrés</p>
+                </div>
                 <div class="accordion-content">
                     <p>
-                        faire percevoir une boucle infinie sans que l'œil détecte où elle recommence. Ma solution : synchroniser le cycle de marche du AT-ST
-                        avec le mouvement de caméra, plutôt que de les animer séparément.
+                        J'ai eu un
+                        <span class="accent--primary">problème d'éclairage</span>
+                        après avoir réduit l'échelle des briques Lego à l'importation, certaines
+                        <span class="accent--primary">pièces</span>
+                        paraissaient
+                        <span class="accent--primary">trop sombres</span>
+                        ou
+                        <span class="accent--primary">trop claires.</span>
+                        J'ai été chercher de l'aide sur un
+                        <span class="accent--primary">forum,</span>
+                        quelqu'un m'a donné une commande pour redimensionner les assets correctement, ce qui a nettement
+                        <span class="accent--primary">amélioré mon rendu.</span>
                     </p>
+                    <div class="comparison" data-component="Comparison" data-position="50">
+                        <div class="comparison__after">
+                            <img src="assets/images/boucle-infinie_render-after.webp" alt="Après" />
+                            <span class="comparison__label comparison__label--after">Après</span>
+                        </div>
+
+                        <div class="comparison__before">
+                            <img src="assets/images/boucle-infinie_render-before.webp" alt="Avant" />
+                            <span class="comparison__label comparison__label--before">Avant</span>
+                        </div>
+
+                        <div class="comparison__handle"></div>
+                    </div>
                 </div>
             </div>
             <div class="accordion-item">
-                <p class="accordion-title">Pour aller plus loin, je pourrais...</p>
+                <div class="accordion-title">
+                    <svg class="icon icon--xs">
+                        <use href="#icon-chevron"></use>
+                    </svg>
+                    <p>Pour aller plus loin, je pourrais...</p>
+                </div>
                 <div class="accordion-content">
                     <p>
                         Ajouter une variation subtile dans l'éclairage à chaque cycle pour renforcer l'illusion de continuité, et tester un rendu à plus haute

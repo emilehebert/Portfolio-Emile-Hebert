@@ -1,0 +1,66 @@
+/* ==========================================================================
+   comparison / 
+   ========================================================================== */
+
+.comparison {
+    --position: 50%;
+    position: relative;
+    overflow: hidden;
+    cursor: ew-resize;
+    touch-action: none;
+    user-select: none;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-primary);
+
+    img {
+        pointer-events: none;
+        display: block;
+        width: 100%;
+    }
+
+    .comparison__after {
+        position: relative;
+    }
+
+    .comparison__before {
+        position: absolute;
+        inset: 0;
+        clip-path: inset(
+            0 calc(100% - var(--position)) 0 0
+        ); // coupe l'image ET son label
+
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .comparison__handle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: var(--position);
+        width: 1px;
+        background: var(--color-primary);
+        transform: translateX(-50%);
+    }
+
+    .comparison__label {
+        position: absolute;
+        bottom: var(--spacing-sm);
+        padding: 5px 10px;
+        background: var(--gradient-background);
+        border: 1px solid var(--color-secondary);
+        border-radius: var(--border-radius);
+        pointer-events: none;
+        font-weight: bold;
+    }
+
+    .comparison__label--before {
+        left: var(--spacing-sm);
+    }
+
+    .comparison__label--after {
+        right: var(--spacing-sm);
+    }
+}

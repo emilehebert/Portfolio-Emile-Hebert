@@ -9,7 +9,7 @@
         display: grid;
         grid-template-columns: repeat(12, minmax(0, 1fr));
         grid-auto-rows: 40px;
-        gap: 24px;
+        gap: var(--grid-gap);
         margin-top: var(--spacing-lg);
     }
 
