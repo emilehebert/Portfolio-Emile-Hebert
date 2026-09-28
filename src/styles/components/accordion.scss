@@ -46,3 +46,11 @@
     flex-direction: column;
     gap: var(--spacing-sm);
 }
+
+.accordion-title .icon {
+    transition: transform 0.1s linear;
+}
+
+.accordion-title.is-open .icon {
+    transform: rotate(90deg);
+}
