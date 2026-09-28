@@ -1,0 +1,29 @@
+/* ========================================================================== 
+   play button / 
+   ========================================================================== */
+
+:root {
+    --play-button-size: 60px;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--play-button-size);
+    height: var(--play-button-size);
+    padding: var(--spacing-sm);
+    border-radius: 50%;
+    overflow: visible;
+    pointer-events: none;
+    background: var(--gradient-play);
+    color: var(--color-white);
+    transform: translate(-50%, -50%);
+    transition:
+        transform 0.25s linear,
+        box-shadow 0.25s linear;
+}

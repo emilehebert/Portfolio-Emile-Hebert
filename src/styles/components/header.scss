@@ -4,15 +4,13 @@
 
 .header {
     border-bottom: 1px solid var(--color-primary);
-    background: #1a1a1a;
-    background: (var(--gradient-background));
+    background: var(--gradient-background);
     .wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
         height: 75px;
     }
-
     ul {
         display: flex;
         align-items: center;

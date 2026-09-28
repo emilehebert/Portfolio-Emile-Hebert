@@ -9,6 +9,10 @@
     }
 }
 
+/*
+ Champs de formulaire
+ ========================================================================== */
+
 .fields {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -50,6 +54,10 @@
         resize: vertical;
     }
 }
+
+/*
+ Mise en page contact (formulaire + coordonnées)
+ ========================================================================== */
 
 .contact__grid {
     display: flex;

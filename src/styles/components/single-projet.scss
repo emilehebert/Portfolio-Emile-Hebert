@@ -14,6 +14,32 @@
     width: fit-content;
 }
 
+/* ==========================================================================
+   vidéo flottante / 
+   ========================================================================== */
+
+.video {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 400px;
+    transform: translate(-80%, -50%); // centre horizontalement ET verticalement
+    transition: transform 0.1s linear;
+    z-index: 10;
+    &:hover {
+        transform: translate(-60%, -50%);
+    }
+
+    .play-button {
+        top: 50%;
+        left: 100%;
+    }
+}
+
+/* ==========================================================================
+   hero projet / 
+   ========================================================================== */
+
 .hero--projet {
     /*
      Structure générale

@@ -45,12 +45,6 @@
         transform: scale(var(--scale-size));
     }
 
-    .window__media img {
-        transition:
-            transform 0.25s ease,
-            filter 0.25s ease;
-    }
-
     /*
      Contenu texte
      ========================================================================== */

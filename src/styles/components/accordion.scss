@@ -13,26 +13,17 @@
     }
 }
 
+/*
+ Structure (ordre et largeur des titres/contenu)
+ ========================================================================== */
+
 .accordion-title {
     order: 1; // tous les titres d'abord, sur la même ligne
     flex: 1; // ils se partagent la largeur, peu importe leur nombre
     min-width: 0;
-    font-weight: bold;
-    cursor: crosshair;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-}
-
-.accordion-title,
-.accordion-content {
-    padding: 10px;
-    background: var(--gradient-background);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--border-radius);
 }
 
 .accordion-content {
@@ -47,10 +38,30 @@
     gap: var(--spacing-sm);
 }
 
-.accordion-title .icon {
-    transition: transform 0.1s linear;
+/*
+ Style visuel
+ ========================================================================== */
+
+.accordion-title,
+.accordion-content {
+    padding: 10px;
+    background: var(--gradient-background);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius);
 }
 
-.accordion-title.is-open .icon {
-    transform: rotate(90deg);
+.accordion-title {
+    font-weight: bold;
+    cursor: crosshair;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    .icon {
+        transition: transform 0.1s linear;
+    }
+
+    &.is-open .icon {
+        transform: rotate(90deg);
+    }
 }

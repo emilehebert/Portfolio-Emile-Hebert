@@ -25,4 +25,11 @@
         var(--color-primary) 100%
     );
     --gradient-secondary: linear-gradient(0deg, #696969 0%, #cfcfcf 100%);
+    --gradient-play: linear-gradient(
+        0deg,
+        rgba(40, 240, 248, 1) 0%,
+        rgba(14, 146, 254, 1) 38%,
+        rgba(36, 92, 219, 1) 58%,
+        rgba(72, 122, 236, 1) 100%
+    );
 }

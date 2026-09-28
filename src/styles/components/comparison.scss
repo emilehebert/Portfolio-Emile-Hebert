@@ -18,6 +18,10 @@
         width: 100%;
     }
 
+    /*
+     Calques avant/après
+     ========================================================================== */
+
     .comparison__after {
         position: relative;
     }
@@ -35,6 +39,10 @@
         }
     }
 
+    /*
+     Poignée
+     ========================================================================== */
+
     .comparison__handle {
         position: absolute;
         top: 0;
@@ -44,6 +52,10 @@
         background: var(--color-primary);
         transform: translateX(-50%);
     }
+
+    /*
+     Labels
+     ========================================================================== */
 
     .comparison__label {
         position: absolute;
