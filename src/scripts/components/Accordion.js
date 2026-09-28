@@ -27,8 +27,12 @@ export default class Accordion {
 
     if (this.options.singleOpen && this.options.forceOpen && isOpen) return;
 
-    if (this.options.singleOpen) this.closeAll();
-    title.classList.toggle('is-open');
+    if (this.options.singleOpen) {
+      this.closeAll();
+      if (!isOpen) title.classList.add('is-open');
+    } else {
+      title.classList.toggle('is-open');
+    }
   }
 
   closeAll() {

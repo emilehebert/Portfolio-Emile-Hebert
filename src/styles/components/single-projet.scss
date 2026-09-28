@@ -37,11 +37,9 @@
 
     .info__right {
         grid-column: 6 / 13;
-        grid-row: 1 / 15;
+        grid-row: 1 / 17;
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-sm);
-        min-height: 0;
 
         .window {
             flex: 1;
@@ -49,13 +47,28 @@
         }
 
         .window__content {
+            position: relative;
             display: flex;
             min-height: 0;
         }
+    }
 
-        .accordion {
-            width: 100%;
-        }
+    .button {
+        grid-column: 1 / 4;
+        grid-row: 17 / 19;
+        height: fit-content;
+        width: fit-content;
+    }
+
+    .accordion {
+        grid-column: 6 / 13;
+        grid-row: 17 / 19;
+    }
+
+    .window__content .list-icons {
+        position: absolute;
+        right: var(--spacing-sm);
+        top: var(--spacing-sm);
     }
 
     /*

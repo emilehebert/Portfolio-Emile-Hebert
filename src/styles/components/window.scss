@@ -1,6 +1,9 @@
 /* ==========================================================================
    window / 
    ========================================================================== */
+:root {
+    --scale-size: 1.05;
+}
 
 .window {
     display: flex;
@@ -51,11 +54,10 @@
     transition:
         transform 0.25s ease,
         filter 0.25s ease;
-}
-
-.window__media:hover img {
-    filter: saturate(1);
-    transform: scale(1.08);
+    &:hover {
+        filter: saturate(1);
+        transform: scale(var(--scale-size));
+    }
 }
 
 .window__footer {

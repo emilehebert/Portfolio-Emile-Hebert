@@ -42,7 +42,7 @@
 
     .card:hover .window__media img {
         filter: saturate(1);
-        transform: scale(1.08);
+        transform: scale(var(--scale-size));
     }
 
     .window__media img {
