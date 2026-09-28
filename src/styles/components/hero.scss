@@ -12,10 +12,26 @@
     }
     .hero__content {
         position: relative;
+        h3 span {
+            font-weight: 400;
+        }
     }
     .nom {
         display: flex;
         justify-content: space-between;
+    }
+    .list-icons {
+        flex-direction: column;
+        position: fixed;
+        top: 50%;
+        left: 0;
+        transform: translate(var(--spacing-sm), -50%);
+        z-index: 10;
+
+        .play-button {
+            top: 50%;
+            left: 100%;
+        }
     }
 }
 
