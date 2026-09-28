@@ -25,13 +25,8 @@
         position: fixed;
         top: 50%;
         left: 0;
-        transform: translate(var(--spacing-sm), -50%);
+        transform: translate(20px, -50%);
         z-index: 10;
-
-        .play-button {
-            top: 50%;
-            left: 100%;
-        }
     }
 }
 
