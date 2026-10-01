@@ -1,10 +1,11 @@
 import Accordion from './components/Accordion.js';
 import Comparison from './components/Comparison.js';
+import Header from './components/Header.js';
 
 export default class ComponentFactory {
   constructor() {
     this.componentInstances = [];
-    this.componentList = { Accordion, Comparison };
+    this.componentList = { Accordion, Comparison, Header };
     this.init();
   }
   init() {

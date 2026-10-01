@@ -47,12 +47,12 @@
         grid-row: 12 / 17;
     }
     .skill--soft {
-        grid-column: 1 / 4;
-        grid-row: 13 / 18;
-    }
-    .skill--hard {
         grid-column: 10 / 13;
         grid-row: 17 / 22;
+    }
+    .skill--hard {
+        grid-column: 1 / 4;
+        grid-row: 13 / 18;
     }
     .tool {
         grid-column: 1 / 8;
@@ -90,17 +90,10 @@
      Compétences
      ========================================================================== */
 
-    .skill--hard {
+    .skill {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-
-        h4 {
-            text-align: right;
-        }
-    }
-
-    .skill {
         ul {
             display: flex;
             flex-direction: column;
