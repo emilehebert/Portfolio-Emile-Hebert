@@ -20,24 +20,6 @@
         z-index: -10;
     }
 
-    /* Style social icons inside the nav list (they are the last li)
-       Show on mobile, hide on larger screens. */
-    ul > li.list-icons {
-        display: flex;
-
-        @media screen and (max-width: $breakpoint-sm) {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            a {
-                aspect-ratio: 1.5 / 1;
-                text-align: center;
-            }
-        }
-        @media screen and (min-width: $breakpoint-md) {
-            display: none;
-        }
-    }
-
     .header-is-hidden.is-scrolling-down:not(.nav-is-active) & {
         transform: translateY(-100%) translateY(1px);
     }
@@ -55,6 +37,7 @@
         left: 0;
         width: 100%;
         height: 100vh;
+        padding: var(--spacing-md);
         background-color: var(--color-background);
         display: flex;
         align-items: center;
@@ -76,25 +59,106 @@
         }
     }
 
+    /*
+     Menu mobile en forme de fenêtre
+     ========================================================================== */
+
+    .header__window {
+        width: 100%;
+        max-width: 500px;
+
+        // Sur desktop, la fenêtre disparaît et seuls les liens restent
+        @media screen and (min-width: $breakpoint-md) {
+            display: contents;
+        }
+    }
+
+    .header__window-bar {
+        padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) 20px;
+
+        p {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        @media screen and (min-width: $breakpoint-md) {
+            display: none;
+        }
+    }
+
+    .header__close {
+        font-size: var(--font-size-button);
+        font-weight: 700;
+        line-height: 1;
+        padding: 10px 15px;
+        cursor: crosshair;
+    }
+
     ul {
         margin: 0;
-        padding: 0;
+        padding: var(--spacing-xl) var(--spacing-md);
         list-style: none;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 50px;
+        gap: var(--spacing-lg);
+
+        @media screen and (max-width: $breakpoint-md) {
+            gap: var(--spacing-md);
+
+            li {
+                width: 100%;
+                max-width: 340px;
+            }
+
+            a:not(.button) {
+                display: block;
+                padding: var(--spacing-xs) 10px;
+                border-radius: var(--border-radius);
+                background: var(--gradient-secondary);
+                border: 1px solid var(--color-secondary);
+                color: var(--color-black);
+                font-size: var(--font-size-h3);
+                font-weight: 700;
+                text-align: center;
+
+                &:hover {
+                    background: var(--gradient-primary);
+                    border-color: var(--color-primary);
+                }
+            }
+
+            .header__video {
+                display: none;
+            }
+        }
 
         @media screen and (min-width: $breakpoint-md) {
             flex-direction: row;
-            gap: 50px;
+            padding: 0;
+            background: none;
+        }
+    }
+
+    .header__socials {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-sm) var(--spacing-md);
+        width: 100%;
+        padding: 20px;
+        border: none;
+        border-top: 1px solid var(--color-primary);
+        border-radius: 0;
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1.6 / 1;
         }
 
-        @media screen and (max-width: $breakpoint-md) {
-            a:not(.button) {
-                font-size: var(--font-size-h3);
-                text-transform: uppercase;
-            }
+        @media screen and (min-width: $breakpoint-md) {
+            display: none;
         }
     }
 
@@ -112,6 +176,7 @@
         width: var(--bar-width);
         height: var(--bar-width);
         z-index: 10;
+        transition: opacity 0.3s ease-out;
 
         span {
             background-color: var(--color-primary);
@@ -138,6 +203,9 @@
         }
 
         .nav-is-active & {
+            opacity: 0;
+            pointer-events: none;
+
             span {
                 top: calc(50% - var(--bar-height) / 2);
 

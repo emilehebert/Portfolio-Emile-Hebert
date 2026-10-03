@@ -62,6 +62,9 @@
     min-height: 0;
     padding: 10px;
     background: var(--gradient-background);
+    @media screen and (max-width: $breakpoint-md) {
+        padding: 5px;
+    }
 }
 
 .window__media {

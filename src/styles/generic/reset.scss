@@ -19,6 +19,16 @@ img {
     max-width: 100%;
 }
 
+::selection {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+::-moz-selection {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
 // Cette classe n'existe pas pour voir, elle sert uniquement que pour le titre TimTools de base ;)
 .tt {
     align-items: center;

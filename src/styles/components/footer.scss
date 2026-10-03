@@ -1,24 +1,33 @@
 /* ==========================================================================
-   footer / 
+   footer /
    ========================================================================== */
 
 .footer {
     border-top: 1px solid var(--color-primary);
-    padding: 50px 0;
-
-    p {
-        text-align: center;
-        margin-top: var(--spacing-md);
-    }
+    padding-top: var(--spacing-lg);
+    background: var(--gradient-background);
 
     /*
      Structure générale
      ========================================================================== */
 
     .footer__content {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: start;
+        gap: var(--spacing-md);
+        padding-bottom: var(--spacing-lg);
+
+        // Mobile : le nom passe en haut, les deux listes côte à côte en dessous
+        @media screen and (max-width: ($breakpoint-sm - 1px)) {
+            grid-template-columns: 1fr 1fr;
+
+            .nom {
+                grid-column: 1 / -1;
+                order: -1;
+                margin-bottom: var(--spacing-sm);
+            }
+        }
     }
 
     .nom {
@@ -32,10 +41,18 @@
      Listes / menu
      ========================================================================== */
 
+    .footer__label {
+        margin-bottom: var(--spacing-sm);
+        font-size: var(--font-size-small);
+        color: var(--color-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
     ul {
         display: flex;
         flex-direction: column;
-        gap: 50px;
+        gap: var(--spacing-sm);
         margin: 0;
         padding: 0;
 
@@ -49,6 +66,8 @@
     }
 
     .menu {
+        text-align: right;
+
         ul {
             align-items: flex-end;
         }
@@ -61,16 +80,46 @@
     .coordonates {
         a {
             color: var(--color-primary);
+
+            &:hover {
+                color: var(--color-white);
+            }
         }
     }
 
-    .socials {
-        padding: 10px;
-        background: var(--gradient-background);
-        border-radius: var(--border-radius);
-        color: var(--color-background);
-        border: 1px solid var(--color-secondary);
+    .list-icons {
+        @media screen and (max-width: $breakpoint-xxs) {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /*
+     Barre du bas
+     ========================================================================== */
+
+    .footer__bottom {
         display: flex;
-        gap: 15px;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm) 0;
+        border-top: 1px solid var(--color-primary);
+        font-size: var(--font-size-small);
+
+        @media screen and (max-width: ($breakpoint-sm - 1px)) {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
+    .footer__top {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+
+        .icon {
+            transform: rotate(-90deg);
+        }
     }
 }

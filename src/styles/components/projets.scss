@@ -13,6 +13,9 @@
         display: flex;
         flex-direction: column;
         gap: var(--spacing-xl);
+        @media screen and (max-width: $breakpoint-sm) {
+            gap: 200px;
+        }
     }
 
     .card {
@@ -56,6 +59,34 @@
 
         .button {
             text-align: center;
+        }
+    }
+
+    /*
+     Responsive — Mobile : une colonne, média en haut et contenu en bas
+     ========================================================================== */
+
+    @media screen and (max-width: $breakpoint-sm) {
+        padding: var(--spacing-lg) 0;
+        .card,
+        .card:nth-child(even) {
+            grid-template-columns: 1fr;
+        }
+
+        .card:nth-child(even) .card__content {
+            order: 0;
+        }
+
+        .card__media .window {
+            height: 100%;
+        }
+
+        .list-icons {
+            width: 100%;
+        }
+
+        .window__footer {
+            display: none;
         }
     }
 }

@@ -61,11 +61,23 @@ export default class Header {
   }
 
   initNavMobile() {
-    const toggle = this.element.querySelector('.js-toggle');
-    toggle.addEventListener('click', this.onToggleNav.bind(this));
+    const toggles = this.element.querySelectorAll('.js-toggle');
+    for (const toggle of toggles) {
+      toggle.addEventListener('click', this.onToggleNav.bind(this));
+    }
+
+    // Ferme le menu quand on clique un lien (ex: ancre sur la même page)
+    const links = this.element.querySelectorAll('nav a');
+    for (const link of links) {
+      link.addEventListener('click', this.closeNav.bind(this));
+    }
   }
 
   onToggleNav() {
     this.html.classList.toggle('nav-is-active');
+  }
+
+  closeNav() {
+    this.html.classList.remove('nav-is-active');
   }
 }

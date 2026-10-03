@@ -5,10 +5,17 @@
 .hero {
     min-height: 750px;
     padding: 100px 0 var(--spacing-lg);
+
+    @media screen and (max-width: $breakpoint-sm) {
+        padding: var(--spacing-lg) 0;
+    }
     .wrapper {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        @media screen and (max-width: $breakpoint-sm) {
+            gap: var(--spacing-md);
+        }
     }
     .hero__content {
         position: relative;
@@ -19,6 +26,9 @@
     .nom {
         display: flex;
         justify-content: space-between;
+        @media screen and (max-width: $breakpoint-sm) {
+            flex-direction: column;
+        }
     }
     .list-icons {
         flex-direction: column;
@@ -27,6 +37,18 @@
         left: 0;
         transform: translate(20px, -50%);
         z-index: 5;
+        @media screen and (max-width: $breakpoint-xl) {
+            display: none;
+        }
+        @media screen and (max-width: $breakpoint-sm) {
+            display: flex;
+            left: auto;
+            right: 0;
+            transform: translate(-20px, -50%);
+        }
+        @media screen and (max-width: $breakpoint-xs) {
+            display: none;
+        }
     }
 }
 
@@ -34,11 +56,18 @@
     display: flex;
     justify-content: center;
 
+    @media screen and (max-width: $breakpoint-sm) {
+        justify-content: flex-start;
+    }
+
     .window {
         position: relative;
         z-index: 2;
         width: 588px;
         height: 400px;
+        @media screen and (max-width: $breakpoint-sm) {
+            width: 425px;
+        }
         .window__content {
             display: flex;
             align-items: flex-end;
@@ -50,7 +79,14 @@
     img {
         position: absolute;
         bottom: -275px;
-        height: 265%;
+        // Passe de 225% (à $breakpoint-sm) à 265% (à $breakpoint-xl).
+        // 40% de la hauteur du contenu de la fenêtre (~354px) ≈ 142px,
+        // réparti sur les 672px entre les deux breakpoints : 142 / 672 ≈ 0.21.
+        height: clamp(
+            200%,
+            calc(200% + (100vw - #{$breakpoint-sm}) * 0.21),
+            265%
+        );
         width: auto;
     }
 }

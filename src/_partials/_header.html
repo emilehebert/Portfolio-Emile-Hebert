@@ -24,13 +24,19 @@
                         <use xlink:href="#icon-logo"></use>
                       </svg>
                     </a>
-                    <nav>
-                        <ul>
-                            <li><a href="index.html#about">À propos</a></li>
-                            <li><a href="index.html#projets">Projets</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="#" class="button">Vidéo de présentation</a></li>
-                            <li class="list-icons">
+                    <nav class="header__nav">
+                        <div class="window header__window">
+                            <div class="window__header header__window-bar">
+                                <p>Naviger à la page...</p>
+                                <button class="button button--secondary header__close js-toggle" aria-label="Fermer le menu">X</button>
+                            </div>
+                            <ul class="window__content header__links">
+                                <li><a href="index.html#about">À propos</a></li>
+                                <li><a href="index.html#projets">Projets</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li class="header__video"><a href="#" class="button">Vidéo de présentation</a></li>
+                            </ul>
+                            <div class="window__footer header__socials list-icons">
                                 <a href="https://github.com/emilehebert" target="_blank" class="logo--link" aria-label="GitHub">
                                     <svg class="icon icon--lg logo--icon">
                                         <use xlink:href="#icon-github"></use>
@@ -61,8 +67,8 @@
                                         <use xlink:href="#icon-artstation"></use>
                                     </svg>
                                 </a>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </nav>
                     <button class="header__toggle js-toggle">
                         <span></span>
