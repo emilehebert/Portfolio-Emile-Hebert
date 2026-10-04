@@ -1,11 +1,12 @@
 import Accordion from './components/Accordion.js';
 import Comparison from './components/Comparison.js';
+import DitherVeil from './components/DitherVeil.js';
 import Header from './components/Header.js';
 
 export default class ComponentFactory {
   constructor() {
     this.componentInstances = [];
-    this.componentList = { Accordion, Comparison, Header };
+    this.componentList = { Accordion, Comparison, DitherVeil, Header };
     this.init();
   }
   init() {

@@ -1,0 +1,19 @@
+/* ==========================================================================
+   dither veil /
+   Canvas WebGL ajouté par DitherVeil.js par-dessus l'<img> d'un .window__media.
+   Si WebGL n'est pas disponible, aucun canvas n'est ajouté et l'<img> reste visible.
+   ========================================================================== */
+
+[data-component='DitherVeil'] {
+    // Le défilement vertical reste possible au doigt sur l'image
+    touch-action: pan-y;
+}
+
+.dither-veil__canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0; // sous le .play-button (z-index: 1)
+    display: block;
+    width: 100%;
+    height: 100%;
+}

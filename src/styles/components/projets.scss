@@ -34,18 +34,13 @@
     }
 
     /*
-     Média (image + hover)
+     Média
      ========================================================================== */
 
     .card__media {
         .window {
             height: 500px;
         }
-    }
-
-    .card:hover .window__media img {
-        filter: saturate(1);
-        transform: scale(var(--scale-size));
     }
 
     /*
