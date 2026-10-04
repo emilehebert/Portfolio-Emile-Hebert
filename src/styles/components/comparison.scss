@@ -1,5 +1,5 @@
 /* ==========================================================================
-   comparison / 
+   COMPARISON / 
    ========================================================================== */
 
 .comparison {
@@ -58,12 +58,9 @@
      ========================================================================== */
 
     .comparison__label {
+        @include panel(var(--spacing-xs) var(--spacing-s));
         position: absolute;
         bottom: var(--spacing-sm);
-        padding: 5px 10px;
-        background: var(--gradient-background);
-        border: 1px solid var(--color-secondary);
-        border-radius: var(--border-radius);
         pointer-events: none;
         font-weight: bold;
     }

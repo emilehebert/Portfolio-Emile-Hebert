@@ -1,10 +1,10 @@
 /* ==========================================================================
-   hero / 
+   HERO / 
    ========================================================================== */
 
 .hero {
     min-height: 750px;
-    padding: 100px 0 var(--spacing-lg);
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
 
     @media screen and (max-width: $breakpoint-sm) {
         padding: var(--spacing-lg) 0;
@@ -35,7 +35,7 @@
         position: fixed;
         top: 50%;
         left: 0;
-        transform: translate(20px, -50%);
+        transform: translate(var(--spacing-m), -50%);
         z-index: 5;
         @media screen and (max-width: $breakpoint-xl) {
             display: none;
@@ -44,7 +44,7 @@
             display: flex;
             left: auto;
             right: 0;
-            transform: translate(-20px, -50%);
+            transform: translate(calc(var(--spacing-m) * -1), -50%);
         }
         @media screen and (max-width: $breakpoint-xs) {
             display: none;
@@ -79,7 +79,7 @@
     img {
         position: absolute;
         bottom: -275px;
-        // Passe de 225% (à $breakpoint-sm) à 265% (à $breakpoint-xl).
+        // Passe de 200% (à $breakpoint-sm) à 265% (à $breakpoint-xl).
         // 40% de la hauteur du contenu de la fenêtre (~354px) ≈ 142px,
         // réparti sur les 672px entre les deux breakpoints : 142 / 672 ≈ 0.21.
         height: clamp(

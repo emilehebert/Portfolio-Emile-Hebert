@@ -44,17 +44,12 @@
 
 .accordion-title,
 .accordion-content {
-    padding: 10px;
-    background: var(--gradient-background);
-    border: 1px solid var(--color-secondary);
-    border-radius: var(--border-radius);
+    @include panel;
 }
 
 .accordion-title {
     font-weight: bold;
     cursor: crosshair;
-    -moz-user-select: none;
-    -webkit-user-select: none;
     user-select: none;
 
     .icon {

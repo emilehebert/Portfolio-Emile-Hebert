@@ -1,5 +1,5 @@
 /* ==========================================================================
-   À propos / 
+   à propos / 
    ========================================================================== */
 
 .about {
@@ -13,10 +13,6 @@
         margin-top: var(--spacing-lg);
         @media screen and (max-width: $breakpoint-md) {
             gap: var(--grid-gap-mobile);
-
-            .window__content {
-                padding: 5px;
-            }
         }
     }
 
@@ -48,10 +44,6 @@
     .passion {
         grid-column: 9 / 13;
         grid-row: 10 / 12;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        width: fit-content;
     }
     .camera {
         grid-column: 9 / 13;
@@ -69,32 +61,22 @@
         grid-column: 1 / 9;
         grid-row: 19 / 22;
     }
-    .cta {
-        grid-column: 3 / 11;
-        grid-row: 23 / 24;
-    }
 
     /*
-     Fenêtres / images
+     Blocs de texte : contenu collé en bas de leur zone
      ========================================================================== */
 
-    .window__content {
-        min-height: 0;
-        padding: 10px;
+    .passion,
+    .skill,
+    .tool {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
-    .window__media {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-
-        img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .passion,
+    .tool {
+        width: fit-content;
     }
 
     /*
@@ -102,36 +84,18 @@
      ========================================================================== */
 
     .skill {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-
         ul {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: var(--spacing-s);
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
         li {
-            background: var(--gradient-background);
-            padding: 5px 10px;
-            border: 1px solid var(--color-secondary);
-            border-radius: var(--border-radius);
+            @include panel(var(--spacing-xs) var(--spacing-s));
         }
-    }
-
-    /*
-     Outils
-     ========================================================================== */
-
-    .tool {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        width: fit-content;
     }
 
     /*
@@ -143,18 +107,7 @@
     }
 
     /*
-     CTA
-     ========================================================================== */
-
-    .cta {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--spacing-md);
-    }
-
-    /*
-     Responsive — Tablette (770px à 1200px)
+     Responsive — Tablette (768px à 1200px)
      ========================================================================== */
 
     @media screen and (min-width: $breakpoint-sm) and (max-width: $breakpoint-lg) {
@@ -186,7 +139,7 @@
      Responsive — Mobile (« Mobile — 4 colonnes »)
      ========================================================================== */
 
-    @media screen and (max-width: $breakpoint-sm) {
+    @media screen and (max-width: ($breakpoint-sm - 1px)) {
         .about__grid {
             grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: var(--grid-gap-mobile);
@@ -245,7 +198,7 @@
      Responsive — Grand mobile (550px à 768px)
      ========================================================================== */
 
-    @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-sm) {
+    @media screen and (min-width: $breakpoint-xs) and (max-width: ($breakpoint-sm - 1px)) {
         .friend {
             grid-column: 1 / 4;
             grid-row: 4 / 12;

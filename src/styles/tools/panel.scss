@@ -1,0 +1,12 @@
+/* ==========================================================================
+   PANEL / TOOLS
+   Style « panneau » du site : fond dégradé, bordure grise, coins arrondis.
+   Utilisation : @include panel;  ou avec un autre padding : @include panel(var(--spacing-xs));
+   ========================================================================== */
+
+@mixin panel($padding: var(--spacing-s)) {
+    padding: $padding;
+    background: var(--gradient-background);
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius);
+}

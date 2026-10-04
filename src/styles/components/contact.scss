@@ -1,5 +1,5 @@
 /* ==========================================================================
-   form / 
+   CONTACT / 
    ========================================================================== */
 
 .contact {
@@ -73,12 +73,10 @@
         flex-direction: column;
         gap: var(--spacing-sm);
     }
-}
 
-.socials {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-xs);
+    .list-icons {
+        flex-wrap: nowrap;
+    }
 }
 
 .legal {

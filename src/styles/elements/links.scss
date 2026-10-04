@@ -7,6 +7,7 @@ a {
     color: var(--color-white);
     font-weight: 600;
     text-decoration: none;
+    cursor: crosshair;
 
     &:hover {
         color: var(--color-primary);

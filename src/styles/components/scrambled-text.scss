@@ -1,11 +1,8 @@
 /* ==========================================================================
-   COVER / TOOLS
+   SCRAMBLED TEXT /
+   Lettres créées par ScrambledText.js (une <span> par lettre).
    ========================================================================== */
 
-@mixin cover($position: absolute) {
-    position: $position;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+.scrambled-text__char {
+    display: inline-block;
 }

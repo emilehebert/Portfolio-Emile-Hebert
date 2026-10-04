@@ -1,5 +1,5 @@
 /* ==========================================================================
-   footer /
+   FOOTER /
    ========================================================================== */
 
 .footer {
@@ -19,7 +19,7 @@
         padding-bottom: var(--spacing-lg);
 
         // Mobile : le nom passe en haut, les deux listes côte à côte en dessous
-        @media screen and (max-width: ($breakpoint-sm - 1px)) {
+        @media screen and (max-width: $breakpoint-sm) {
             grid-template-columns: 1fr 1fr;
 
             .nom {
@@ -77,7 +77,7 @@
      Coordonnées / réseaux sociaux
      ========================================================================== */
 
-    .coordonates {
+    .coordinates {
         a {
             color: var(--color-primary);
 
@@ -107,18 +107,14 @@
         border-top: 1px solid var(--color-primary);
         font-size: var(--font-size-small);
 
-        @media screen and (max-width: ($breakpoint-sm - 1px)) {
+        @media screen and (max-width: $breakpoint-sm) {
             flex-direction: column;
             text-align: center;
         }
     }
-
     .footer__top {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--spacing-xs);
-
         .icon {
+            margin-left: var(--spacing-xs);
             transform: rotate(-90deg);
         }
     }

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   icons / component
+   ICONS / COMPONENT
    ========================================================================== */
 
 .icon {
@@ -53,38 +53,36 @@
     color: var(--color-background);
     border: 1px solid var(--color-secondary);
     .logo--icon {
-        padding: 5px;
+        padding: var(--spacing-xs);
+    }
+    // Nom de l'icône, créé par IconLabel.js à partir du aria-label
+    .logo--label {
+        @include panel(var(--spacing-xs));
+        display: none;
+        position: absolute;
+        color: var(--color-white);
+        font-weight: 400;
+        bottom: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        pointer-events: none;
     }
     &:hover {
         background: var(--gradient-primary);
         border-color: var(--color-primary);
         color: var(--color-black);
-        &::before {
-            content: attr(aria-label);
-            position: absolute;
-            background: var(--gradient-background);
-            padding: var(--spacing-xs);
-            border: 1px solid var(--color-secondary);
-            border-radius: var(--border-radius);
-            color: var(--color-white);
-            font-weight: 400;
-            bottom: 120%;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            pointer-events: none;
+        .logo--label {
+            display: block;
         }
     }
 }
 
 .list-icons {
-    padding: 10px;
-    background: var(--gradient-background);
-    border-radius: var(--border-radius);
+    @include panel;
     color: var(--color-background);
-    border: 1px solid var(--color-secondary);
     display: flex;
-    gap: 15px;
+    gap: var(--spacing-sm);
     width: fit-content;
     flex-wrap: wrap;
 }

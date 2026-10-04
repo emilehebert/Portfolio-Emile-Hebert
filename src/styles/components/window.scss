@@ -1,5 +1,5 @@
 /* ==========================================================================
-   window / 
+   WINDOW / 
    ========================================================================== */
 .window {
     display: flex;
@@ -27,21 +27,20 @@
  Header / footer
  ========================================================================== */
 
-.window__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background: var(--gradient-background);
-    border-bottom: 1px solid var(--color-primary);
-}
-
+.window__header,
 .window__footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: var(--spacing-s);
     background: var(--gradient-background);
+}
+
+.window__header {
+    border-bottom: 1px solid var(--color-primary);
+}
+
+.window__footer {
     border-top: 1px solid var(--color-primary);
 }
 
@@ -51,10 +50,10 @@
 
 .window__content {
     min-height: 0;
-    padding: 10px;
+    padding: var(--spacing-s);
     background: var(--gradient-background);
     @media screen and (max-width: $breakpoint-md) {
-        padding: 5px;
+        padding: var(--spacing-xs);
     }
 }
 

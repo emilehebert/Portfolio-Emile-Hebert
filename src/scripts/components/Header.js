@@ -2,8 +2,8 @@ export default class Header {
   constructor(element) {
     this.element = element;
     this.options = {
-      treshold: 0,
-      alwaysshow: false,
+      threshold: 0,
+      alwaysShow: false,
     };
     this.scrollPosition = 0;
     this.lastScrollPosition = 0;
@@ -20,12 +20,13 @@ export default class Header {
   }
 
   setOptions() {
-    if ('treshold' in this.element.dataset) {
-      this.options.treshold = 0.1;
+    if ('threshold' in this.element.dataset) {
+      this.options.threshold = 0.1;
     }
 
-    if ('always-show' in this.element.dataset) {
-      this.options.alwaysshow = true;
+    // data-always-show devient « alwaysShow » dans dataset (camelCase)
+    if ('alwaysShow' in this.element.dataset) {
+      this.options.alwaysShow = true;
     }
   }
 
@@ -33,7 +34,7 @@ export default class Header {
     this.lastScrollPosition = this.scrollPosition;
     this.scrollPosition = document.scrollingElement.scrollTop;
 
-    if (this.options.alwaysshow == false) {
+    if (!this.options.alwaysShow) {
       this.setHeaderState();
     }
     this.setDirections();
@@ -42,7 +43,7 @@ export default class Header {
   setHeaderState() {
     if (
       this.scrollPosition >
-      document.scrollingElement.scrollHeight * this.options.treshold
+      document.scrollingElement.scrollHeight * this.options.threshold
     ) {
       this.html.classList.add('header-is-hidden');
     } else {
@@ -62,14 +63,14 @@ export default class Header {
 
   initNavMobile() {
     const toggles = this.element.querySelectorAll('.js-toggle');
-    for (const toggle of toggles) {
-      toggle.addEventListener('click', this.onToggleNav.bind(this));
+    for (let i = 0; i < toggles.length; i++) {
+      toggles[i].addEventListener('click', this.onToggleNav.bind(this));
     }
 
     // Ferme le menu quand on clique un lien (ex: ancre sur la même page)
     const links = this.element.querySelectorAll('nav a');
-    for (const link of links) {
-      link.addEventListener('click', this.closeNav.bind(this));
+    for (let i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', this.closeNav.bind(this));
     }
   }
 
