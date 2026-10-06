@@ -4,11 +4,20 @@ import DitherVeil from './components/DitherVeil.js';
 import Header from './components/Header.js';
 import IconLabel from './components/IconLabel.js';
 import ScrambledText from './components/ScrambledText.js';
+import TargetCursor from './components/TargetCursor.js';
 
 export default class ComponentFactory {
   constructor() {
     this.componentInstances = [];
-    this.componentList = { Accordion, Comparison, DitherVeil, Header, IconLabel, ScrambledText };
+    this.componentList = {
+      Accordion,
+      Comparison,
+      DitherVeil,
+      Header,
+      IconLabel,
+      ScrambledText,
+      TargetCursor,
+    };
     this.init();
   }
   init() {

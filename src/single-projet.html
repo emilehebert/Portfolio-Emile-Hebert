@@ -16,21 +16,43 @@
                     <span class="accent--primary">Lego Star Wars</span>
                     sur Endor entre les deux personnages les plus iconiques de la saga.
                 </p>
-                <a href="https://youtube.com" target="_blank" class="window">
-                    <div class="window__header">
-                        <p>Rendu final de Route en boucle à l’infini</p>
-                    </div>
-                    <div class="window__content">
-                        <div class="window__media" data-component="DitherVeil">
-                            <img src="assets/images/boucle-infinie/Final-Render-Thumbnail.webp" alt="Boucle infinie thumbnail" />
-                            <svg class="play-button icon icon--md" aria-label="Lire la vidéo" role="img">
-                                <use href="#icon-play"></use>
+                <div class="accordion accordion--stacked" data-component="Accordion" data-single-open>
+                    <div class="accordion-item">
+                        <div class="accordion-title cursor-target">
+                            <svg class="icon icon--xs">
+                                <use href="#icon-chevron"></use>
                             </svg>
+                            <p>Crédits</p>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Projet créatif non officiel. Les marques, modèles et droits appartiennent au Groupe LEGO et à Lucasfilm Ltd.</p>
                         </div>
                     </div>
-                </a>
+                    <div class="accordion-item">
+                        <div class="accordion-title cursor-target">
+                            <svg class="icon icon--xs">
+                                <use href="#icon-chevron"></use>
+                            </svg>
+                            <p>Rôle</p>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Mise en scène, animation figurines éclairage et rendu final.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-title cursor-target">
+                            <svg class="icon icon--xs">
+                                <use href="#icon-chevron"></use>
+                            </svg>
+                            <p>Usage d'IA</p>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Le projet a été réalisé sans IA. J'ai utilisé Claude pour reformuler et structurer les textes de cette fiche.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="info__right">
+            <div class="info__right info__render">
                 <div class="window">
                     <div class="window__header">
                         <p>Capture d’écran de l’environnement</p>
@@ -44,69 +66,39 @@
                             />
                         </div>
                         <div class="list-icons" data-component="IconLabel">
-                            <a href="https://www.blender.org/" target="_blank" class="logo--link" aria-label="Blender">
+                            <a href="https://www.blender.org/" target="_blank" class="logo--link cursor-target" aria-label="Blender">
                                 <svg class="icon icon--lg logo--icon">
                                     <use xlink:href="#icon-blender"></use>
                                 </svg>
                             </a>
-                            <a href="https://www.adobe.com/" target="_blank" class="logo--link" aria-label="Suite Adobe">
+                            <a href="https://www.adobe.com/" target="_blank" class="logo--link cursor-target" aria-label="Suite Adobe">
                                 <svg class="icon icon--lg logo--icon">
                                     <use xlink:href="#icon-adobe"></use>
                                 </svg>
                             </a>
-                            <a href="https://mecabricks.com/" target="_blank" class="logo--link" aria-label="Mecabricks">
+                            <a href="https://mecabricks.com/" target="_blank" class="logo--link cursor-target" aria-label="Mecabricks">
                                 <svg class="icon icon--lg logo--icon">
                                     <use xlink:href="#icon-mecabricks"></use>
                                 </svg>
                             </a>
                         </div>
                     </div>
+                    <div class="window__footer">
+                        <a href="https://youtube.com" target="_blank" class="button button--secondary cursor-target" data-component="ScrambledText">
+                            Voir le rendu final
+                        </a>
+                    </div>
                 </div>
             </div>
-            <a href="index.html#projets" class="button" data-component="ScrambledText">
+            <a href="index.html#projets" class="button cursor-target" data-component="ScrambledText">
                 Revenir aux projets
                 <svg class="icon">
                     <use href="#icon-arrow"></use>
                 </svg>
             </a>
-            <div class="accordion" data-component="Accordion" data-single-open>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <svg class="icon icon--xs">
-                            <use href="#icon-chevron"></use>
-                        </svg>
-                        <p>Crédits</p>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Projet créatif non officiel. Les marques, modèles et droits appartiennent au Groupe LEGO et à Lucasfilm Ltd.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <svg class="icon icon--xs">
-                            <use href="#icon-chevron"></use>
-                        </svg>
-                        <p>Rôle</p>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Mise en scène, animation figurines éclairage et rendu final.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <svg class="icon icon--xs">
-                            <use href="#icon-chevron"></use>
-                        </svg>
-                        <p>Usage d'IA</p>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Le projet a été réalisé sans IA. J'ai utilisé Claude pour reformuler et structurer les textes de cette fiche.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
-    <a href="https://youtube.com" target="_blank" class="video">
+    <a href="https://youtube.com" target="_blank" class="video cursor-target">
         <div class="window">
             <div class="window__content">
                 <div class="window__media" data-component="DitherVeil">
@@ -333,7 +325,7 @@
                     </p>
                 </div>
                 <div class="etape__media">
-                    <a href="https://youtube.com" target="_blank" class="window">
+                    <a href="https://youtube.com" target="_blank" class="window cursor-target">
                         <div class="window__header">
                             <p>Montage sonore et finalisation.étape</p>
                         </div>
@@ -385,7 +377,7 @@
         <h3 class="title">Bilan / Apprentissages</h3>
         <div class="accordion" data-component="Accordion" data-single-open data-force-open>
             <div class="accordion-item">
-                <div class="accordion-title is-open">
+                <div class="accordion-title is-open cursor-target">
                     <svg class="icon icon--xs">
                         <use href="#icon-chevron"></use>
                     </svg>
@@ -422,7 +414,7 @@
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-title">
+                <div class="accordion-title cursor-target">
                     <svg class="icon icon--xs">
                         <use href="#icon-chevron"></use>
                     </svg>
@@ -439,7 +431,7 @@
                 </div>
             </div>
         </div>
-        <a href="index.html#projets" class="button" data-component="ScrambledText">Revenir aux projets →</a>
+        <a href="index.html#projets" class="button cursor-target" data-component="ScrambledText">Revenir aux projets →</a>
     </div>
 </section>
 

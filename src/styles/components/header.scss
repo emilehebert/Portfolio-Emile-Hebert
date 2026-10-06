@@ -74,7 +74,8 @@
     }
 
     .header__window-bar {
-        padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) var(--spacing-m);
+        padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm)
+            var(--spacing-m);
 
         p {
             margin: 0;
@@ -91,7 +92,6 @@
         font-weight: 700;
         line-height: 1;
         padding: var(--spacing-s) var(--spacing-sm);
-        cursor: crosshair;
     }
 
     ul {
@@ -170,7 +170,6 @@
         background-color: transparent;
         border: none;
         outline: none;
-        cursor: crosshair;
         padding: 0;
         position: relative;
         width: var(--bar-width);

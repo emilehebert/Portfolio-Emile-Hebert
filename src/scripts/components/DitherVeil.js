@@ -22,7 +22,7 @@ export default class DitherVeil {
       fit: 'cover', // 'cover' remplit la fenêtre | 'contain' montre l'image au complet
 
       // Dither
-      pattern: 'floyd', // 'floyd' | 'atkinson' | 'bayer' (8×8) | 'bayer4' (4×4) | 'lines'
+      pattern: 'bayer4', // 'floyd' | 'atkinson' | 'bayer' (8×8) | 'bayer4' (4×4) | 'lines'
       palette: 'duotone', // 'duotone' (2 couleurs) | 'rgb' (couleurs rétro)
       pixelSize: 2, // taille d'un point, en px
       levels: 7, // nombre de tons (2 = noir et blanc pur)

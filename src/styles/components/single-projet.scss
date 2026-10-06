@@ -30,6 +30,9 @@
         top: 50%;
         left: 100%;
     }
+    @media (max-width: $breakpoint-xl) {
+        display: none;
+    }
 }
 
 /* ==========================================================================
@@ -51,7 +54,7 @@
 
     .info__left {
         grid-column: 1 / 7;
-        grid-row: 1 / 14;
+        grid-row: 1;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -61,7 +64,8 @@
 
     .info__right {
         grid-column: 6 / 13;
-        grid-row: 1 / 17;
+        grid-row: 1 / 3;
+        align-self: start;
         display: flex;
         flex-direction: column;
 
@@ -75,18 +79,23 @@
             display: flex;
             min-height: 0;
         }
+
+        .window__footer {
+            display: none;
+
+            .button {
+                flex: 1;
+                text-align: center;
+            }
+        }
     }
 
-    .button {
+    .info > .button {
         grid-column: 1 / 4;
-        grid-row: 17 / 19;
+        grid-row: 2;
+        align-self: end;
         height: fit-content;
-        width: fit-content;
-    }
-
-    .accordion {
-        grid-column: 6 / 13;
-        grid-row: 17 / 19;
+        text-align: center;
     }
 
     .window__content .list-icons {
@@ -107,12 +116,57 @@
 
     .tag {
         @include panel;
+        align-self: stretch;
     }
 
     .description {
         padding: var(--spacing-s);
         background: var(--color-background);
         border-radius: var(--border-radius);
+    }
+
+    /*
+     Responsive
+     ========================================================================== */
+
+    @media (max-width: $breakpoint-xl) {
+        .info__right {
+            .window__footer {
+                display: flex;
+            }
+        }
+    }
+
+    @media (max-width: $breakpoint-md) {
+        .info {
+            grid-template-rows: auto 1fr;
+        }
+
+        .info__left {
+            grid-row: 1 / 3;
+        }
+
+        .info__right {
+            grid-column: 7 / 13;
+            grid-row: 1;
+        }
+
+        .info > .button {
+            grid-column: 7 / 13;
+            justify-self: end;
+            align-self: start;
+        }
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    .hero--projet .info {
+        display: flex;
+        flex-direction: column;
+    }
+    .conception .etapes .etape {
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -135,9 +189,11 @@
         grid-template-columns: 1fr 1fr;
         gap: var(--grid-gap);
 
-        &:nth-child(even) {
-            .etape__media {
-                order: -1;
+        @media (min-width: $breakpoint-sm) {
+            &:nth-child(even) {
+                .etape__media {
+                    order: -1;
+                }
             }
         }
     }
@@ -167,6 +223,10 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--grid-gap);
+        @media (max-width: $breakpoint-sm) {
+            display: flex;
+            flex-direction: column;
+        }
     }
 }
 

@@ -11,6 +11,42 @@
     .accordion-item {
         display: contents; // titre et contenu deviennent des enfants directs du flex
     }
+
+    // Variante : items empilés (contenu sous son titre), même sur desktop
+    &--stacked {
+        flex-direction: column;
+
+        .accordion-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            width: 100%;
+        }
+
+        .accordion-title,
+        .accordion-content {
+            order: initial;
+            flex-basis: auto;
+            width: 100%;
+        }
+    }
+
+    @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+
+        .accordion-item {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .accordion-title,
+        .accordion-content {
+            order: initial;
+            flex-basis: auto;
+            width: 100%;
+        }
+    }
 }
 
 /*
@@ -49,7 +85,6 @@
 
 .accordion-title {
     font-weight: bold;
-    cursor: crosshair;
     user-select: none;
 
     .icon {

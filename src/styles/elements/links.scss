@@ -7,7 +7,7 @@ a {
     color: var(--color-white);
     font-weight: 600;
     text-decoration: none;
-    cursor: crosshair;
+    cursor: none; // le curseur est géré par le JS, pas par le CSS
 
     &:hover {
         color: var(--color-primary);
