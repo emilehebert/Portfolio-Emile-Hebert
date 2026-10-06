@@ -4,6 +4,9 @@
 
 .contact {
     padding: var(--spacing-xl) 0;
+    @media (max-width: $breakpoint-sm) {
+        padding: var(--spacing-lg) 0;
+    }
     h2 {
         margin-bottom: var(--spacing-md);
     }
@@ -17,6 +20,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-md);
+    @media (max-width: $breakpoint-sm) {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .field {
@@ -61,25 +68,50 @@
 
 .contact__grid {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
 
     .contact__form {
         flex: 2;
     }
 
     .contact__side {
-        flex: 1;
+        flex: 0 1 auto;
         display: flex;
         flex-direction: column;
         gap: var(--spacing-sm);
+        align-items: baseline;
+
+        .list-icons {
+            @media (max-width: $breakpoint-xs) {
+                width: 100%;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                gap: var(--spacing-sm);
+
+                .logo--link {
+                    flex: 1 1 0;
+                    min-width: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    aspect-ratio: 1;
+                }
+
+                .logo--icon {
+                    width: clamp(28px, 9vw, 40px);
+                    height: clamp(28px, 9vw, 40px);
+                }
+            }
+        }
     }
 
-    .list-icons {
-        flex-wrap: nowrap;
+    @media (max-width: $breakpoint-sm) {
+        display: flex;
+        flex-direction: column;
     }
 }
 
 .legal {
-    margin-top: auto;
+    margin: auto auto 0 auto;
     text-align: center;
 }

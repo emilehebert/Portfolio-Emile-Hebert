@@ -2,14 +2,6 @@
    PROJET / 
    ========================================================================== */
 
-.title {
-    @include panel;
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    width: fit-content;
-}
-
 /* ==========================================================================
    vidéo flottante / 
    ========================================================================== */
@@ -42,6 +34,9 @@
 .hero--projet {
     min-height: 750px;
     padding: var(--spacing-xl) 0 var(--spacing-lg);
+    @media (max-width: $breakpoint-sm) {
+        padding: var(--spacing-lg) 0;
+    }
     /*
      Structure générale
      ========================================================================== */

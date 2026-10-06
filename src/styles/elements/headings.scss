@@ -43,6 +43,17 @@ p {
     }
 }
 
+.title {
+    @include panel;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    width: fit-content;
+    @media (max-width: $breakpoint-sm) {
+        width: 100%;
+    }
+}
+
 span {
     &.accent--primary {
         color: var(--color-primary);
