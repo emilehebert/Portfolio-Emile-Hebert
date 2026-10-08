@@ -1,51 +1,54 @@
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
-// Modale : s'ouvre avec les éléments qui ont data-modal="id-de-la-modale"
+// Modale : s'ouvre avec les liens data-modal="id-de-la-modale"
 export default class Modal {
   constructor(element) {
     this.element = element;
+    this.videoId = this.element.dataset.videoId;
 
-    this.buttons = document.querySelectorAll(
-      `[data-modal="${this.element.id}"]`,
-    );
-    this.closeButton = this.element.querySelector('.js-close');
+    this.links = document.querySelectorAll(`[data-modal="${this.element.id}"]`);
+    this.closeLink = this.element.querySelector('.js-close');
+    this.video = this.element.querySelector('.js-video');
 
     this.init();
   }
 
   init() {
-    for (let i = 0; i < this.buttons.length; i++) {
-      this.buttons[i].addEventListener('click', this.open.bind(this));
+    for (let i = 0; i < this.links.length; i++) {
+      this.links[i].addEventListener('click', this.open.bind(this));
     }
 
-    this.closeButton.addEventListener('click', this.close.bind(this));
+    this.closeLink.addEventListener('click', this.close.bind(this));
     this.element.addEventListener('click', this.onClickOutside.bind(this));
   }
 
   open(event) {
     event.preventDefault();
     this.element.classList.add('is-open');
-    this.pauseScroll(true);
+    ScrollSmoother.get().paused(true);
+
+    // La vidéo YouTube démarre à l'ouverture
+    if (this.videoId) {
+      const src = `https://www.youtube.com/embed/${this.videoId}?autoplay=1&rel=0`;
+      this.video.innerHTML = `<iframe src="${src}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    }
   }
 
-  close() {
+  close(event) {
+    event.preventDefault();
     this.element.classList.remove('is-open');
-    this.pauseScroll(false);
+    ScrollSmoother.get().paused(false);
+
+    // Retirer la vidéo l'arrête
+    if (this.videoId) {
+      this.video.innerHTML = '';
+    }
   }
 
   // Ferme si on clique à côté de la fenêtre
   onClickOutside(event) {
     if (event.target === this.element) {
-      this.close();
-    }
-  }
-
-  // Bloque le défilement de la page derrière la modale
-  pauseScroll(paused) {
-    const smoother = ScrollSmoother.get();
-
-    if (smoother) {
-      smoother.paused(paused);
+      this.close(event);
     }
   }
 }

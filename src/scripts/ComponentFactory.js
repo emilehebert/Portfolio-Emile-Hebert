@@ -3,11 +3,10 @@ import Comparison from './components/Comparison.js';
 import DitherVeil from './components/DitherVeil.js';
 import Header from './components/Header.js';
 import IconLabel from './components/IconLabel.js';
+import Modal from './components/Modal.js';
 import ScrambledText from './components/ScrambledText.js';
 import Scroller from './components/Scroller.js';
 import TargetCursor from './components/TargetCursor.js';
-import YouTube from './components/YouTube.js';
-import Modal from './components/Modal.js';
 
 export default class ComponentFactory {
   constructor() {
@@ -18,11 +17,10 @@ export default class ComponentFactory {
       DitherVeil,
       Header,
       IconLabel,
+      Modal,
       ScrambledText,
       Scroller,
       TargetCursor,
-      YouTube,
-      Modal,
     };
     this.init();
   }
