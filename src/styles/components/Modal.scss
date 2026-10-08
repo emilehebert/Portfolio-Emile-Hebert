@@ -1,0 +1,24 @@
+/* ==========================================================================
+   MODAL /
+   Modale réutilisable (Modal.js) : cachée, puis affichée avec .is-open
+   ========================================================================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    background: rgba(0, 0, 0, 0.8);
+
+    &.is-open {
+        display: flex;
+    }
+
+    .window {
+        width: 100%;
+        max-width: 1000px;
+    }
+}
