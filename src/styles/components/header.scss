@@ -226,3 +226,8 @@
         }
     }
 }
+
+// Le contenu commence sous le header (qui est hors du #smooth-wrapper)
+#smooth-content {
+    padding-top: 76px; // hauteur du header : 75px + bordure
+}

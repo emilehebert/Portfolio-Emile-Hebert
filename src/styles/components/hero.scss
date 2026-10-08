@@ -30,25 +30,32 @@
             flex-direction: column;
         }
     }
-    .list-icons {
-        flex-direction: column;
-        position: fixed;
-        top: 50%;
-        left: 0;
-        transform: translate(var(--spacing-m), -50%);
-        z-index: 5;
-        @media screen and (max-width: $breakpoint-xl) {
-            display: none;
-        }
-        @media screen and (max-width: $breakpoint-sm) {
-            display: flex;
-            left: auto;
-            right: 0;
-            transform: translate(calc(var(--spacing-m) * -1), -50%);
-        }
-        @media screen and (max-width: $breakpoint-xs) {
-            display: none;
-        }
+}
+
+/* ==========================================================================
+   Réseaux sociaux flottants /
+   Sortis du #smooth-wrapper par Scroller.js (classe .js-fixed), donc ce bloc
+   ne peut pas être imbriqué dans .hero
+   ========================================================================== */
+
+.hero__socials {
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translate(var(--spacing-m), -50%);
+    z-index: 5;
+    @media screen and (max-width: $breakpoint-xl) {
+        display: none;
+    }
+    @media screen and (max-width: $breakpoint-sm) {
+        display: flex;
+        left: auto;
+        right: 0;
+        transform: translate(calc(var(--spacing-m) * -1), -50%);
+    }
+    @media screen and (max-width: $breakpoint-xs) {
+        display: none;
     }
 }
 
