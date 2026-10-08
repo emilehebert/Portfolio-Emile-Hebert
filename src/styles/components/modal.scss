@@ -1,0 +1,35 @@
+/* ==========================================================================
+   MODAL /
+   Modale (Modal.js) : cachée, puis affichée avec .is-open
+   ========================================================================== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 50; // par-dessus le header, sous le curseur (100)
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    background: rgba(0, 0, 0, 0.8);
+
+    &.is-open {
+        display: flex;
+    }
+
+    .window {
+        width: 100%;
+        max-width: min(
+            1000px,
+            (100vh - 150px) * 16 / 9
+        ); // rentre aussi en hauteur
+    }
+
+    // Vidéo YouTube en 16:9
+    iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 0;
+    }
+}
