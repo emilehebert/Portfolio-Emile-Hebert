@@ -6,6 +6,8 @@ import IconLabel from './components/IconLabel.js';
 import ScrambledText from './components/ScrambledText.js';
 import Scroller from './components/Scroller.js';
 import TargetCursor from './components/TargetCursor.js';
+import YouTube from './components/YouTube.js';
+import Modal from './components/Modal.js';
 
 export default class ComponentFactory {
   constructor() {
@@ -19,6 +21,8 @@ export default class ComponentFactory {
       ScrambledText,
       Scroller,
       TargetCursor,
+      YouTube,
+      Modal,
     };
     this.init();
   }

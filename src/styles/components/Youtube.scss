@@ -1,0 +1,13 @@
+/* ==========================================================================
+   YOUTUBE /
+   Vidéo YouTube (YouTube.js) : le lecteur remplace .js-video au clic sur l'image
+   ========================================================================== */
+
+[data-component='YouTube'] {
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
+.youtube__poster {
+    height: 100%;
+}

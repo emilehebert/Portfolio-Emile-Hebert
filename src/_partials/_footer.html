@@ -70,5 +70,25 @@
             </div>
         </div>
 
+        <!-- Modale : vidéo de présentation (hors du #smooth-wrapper pour rester fixe) -->
+        <div class="modal" id="modale-presentation" data-component="Modal">
+            <div class="window">
+                <div class="window__header">
+                    <p>Ma vidéo de présentation</p>
+                    <button class="button button--secondary js-close cursor-target" aria-label="Fermer la vidéo" data-component="ScrambledText">X</button>
+                </div>
+                <div class="window__content">
+                    <div class="window__media" data-component="YouTube" data-video-id="ID_VIDEO_PRESENTATION">
+                        <div class="youtube__poster js-video">
+                            <img class="js-poster" src="https://img.youtube.com/vi/ID_VIDEO_PRESENTATION/hqdefault.jpg" alt="Vidéo de présentation" />
+                            <svg class="play-button icon icon--md" aria-label="Lire la vidéo" role="img">
+                                <use href="#icon-play"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>
