@@ -24,12 +24,4 @@
             (100vh - 150px) * 16 / 9
         ); // rentre aussi en hauteur
     }
-
-    // Vidéo YouTube en 16:9
-    iframe {
-        display: block;
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        border: 0;
-    }
 }

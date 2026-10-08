@@ -4,11 +4,9 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother';
 export default class Modal {
   constructor(element) {
     this.element = element;
-    this.videoId = this.element.dataset.videoId;
 
     this.links = document.querySelectorAll(`[data-modal="${this.element.id}"]`);
     this.closeLink = this.element.querySelector('.js-close');
-    this.video = this.element.querySelector('.js-video');
 
     this.init();
   }
@@ -26,23 +24,12 @@ export default class Modal {
     event.preventDefault();
     this.element.classList.add('is-open');
     ScrollSmoother.get().paused(true);
-
-    // La vidéo YouTube démarre à l'ouverture
-    if (this.videoId) {
-      const src = `https://www.youtube.com/embed/${this.videoId}?autoplay=1&rel=0`;
-      this.video.innerHTML = `<iframe src="${src}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-    }
   }
 
   close(event) {
     event.preventDefault();
     this.element.classList.remove('is-open');
     ScrollSmoother.get().paused(false);
-
-    // Retirer la vidéo l'arrête
-    if (this.videoId) {
-      this.video.innerHTML = '';
-    }
   }
 
   // Ferme si on clique à côté de la fenêtre

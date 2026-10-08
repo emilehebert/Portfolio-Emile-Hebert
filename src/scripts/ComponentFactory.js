@@ -7,6 +7,8 @@ import Modal from './components/Modal.js';
 import ScrambledText from './components/ScrambledText.js';
 import Scroller from './components/Scroller.js';
 import TargetCursor from './components/TargetCursor.js';
+import YouTube from './components/YouTube.js';
+import RotatingText from './components/RotatingText.js';
 
 export default class ComponentFactory {
   constructor() {
@@ -21,6 +23,8 @@ export default class ComponentFactory {
       ScrambledText,
       Scroller,
       TargetCursor,
+      YouTube,
+      RotatingText,
     };
     this.init();
   }

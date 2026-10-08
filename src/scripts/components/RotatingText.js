@@ -1,225 +1,186 @@
-'use client';
+import { gsap } from 'gsap';
 
-import {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+// Texte qui change de mot en boucle, lettre par lettre
+// <span class="rotating-text" data-component="RotatingText" data-words="3D|interactif|vidéo">3D</span>
+export default class RotatingText {
+  constructor(element) {
+    this.element = element;
+    this.options = {
+      words: [],
+      separator: '|', // sépare les mots dans data-words
+      interval: 1, // temps où chaque mot reste affiché, en secondes
+      loop: true, // false = s'arrête au dernier mot
+      split: 'letters', // ce qui s'anime un par un : 'letters' ou 'words'
+      stagger: 0.02,
 
-import './RotatingText.css';
+      exitDuration: 0.2,
+      exitEase: 'expo.in', // accélère et claque
+      exitY: -120,
 
-function cn(...classes) {
-  return classes.filter(Boolean).join(' ');
+      enterDuration: 0.35,
+      enterEase: 'back.out(2.5)', // dépasse puis revient
+      enterY: 100,
+
+      resizeDuration: 0.25,
+      resizeEase: 'expo.out', // arrêt sec
+    };
+    this.index = 0;
+    this.srText = null;
+    this.visual = null;
+
+    this.init();
+  }
+
+  init() {
+    this.setOptions();
+    if (this.options.words.length === 0) return;
+
+    this.build();
+    this.render(this.options.words[0]);
+    this.wait();
+  }
+
+  setOptions() {
+    if (this.element.dataset.separator) {
+      this.options.separator = this.element.dataset.separator;
+    }
+
+    if (this.element.dataset.words) {
+      this.options.words = this.element.dataset.words.split(
+        this.options.separator,
+      );
+    }
+
+    if (this.element.dataset.interval) {
+      this.options.interval = Number(this.element.dataset.interval);
+    }
+
+    if (this.element.dataset.loop === 'false') {
+      this.options.loop = false;
+    }
+
+    if (this.element.dataset.split) {
+      this.options.split = this.element.dataset.split;
+    }
+
+    if (this.element.dataset.stagger) {
+      this.options.stagger = Number(this.element.dataset.stagger);
+    }
+
+    if (this.element.dataset.staggerFrom) {
+      this.options.staggerFrom = this.element.dataset.staggerFrom;
+    }
+
+    if (this.element.dataset.exitDuration) {
+      this.options.exitDuration = Number(this.element.dataset.exitDuration);
+    }
+
+    if (this.element.dataset.exitEase) {
+      this.options.exitEase = this.element.dataset.exitEase;
+    }
+
+    if (this.element.dataset.exitY) {
+      this.options.exitY = Number(this.element.dataset.exitY);
+    }
+
+    if (this.element.dataset.enterDuration) {
+      this.options.enterDuration = Number(this.element.dataset.enterDuration);
+    }
+
+    if (this.element.dataset.enterEase) {
+      this.options.enterEase = this.element.dataset.enterEase;
+    }
+
+    if (this.element.dataset.enterY) {
+      this.options.enterY = Number(this.element.dataset.enterY);
+    }
+
+    if (this.element.dataset.resizeDuration) {
+      this.options.resizeDuration = Number(this.element.dataset.resizeDuration);
+    }
+
+    if (this.element.dataset.resizeEase) {
+      this.options.resizeEase = this.element.dataset.resizeEase;
+    }
+  }
+
+  // Un texte pour les lecteurs d'écran + un texte animé caché pour eux
+  build() {
+    this.element.textContent = '';
+
+    this.srText = document.createElement('span');
+    this.srText.className = 'rotating-text__sr';
+
+    this.visual = document.createElement('span');
+    this.visual.className = 'rotating-text__visual';
+    this.visual.setAttribute('aria-hidden', 'true');
+
+    this.element.append(this.srText, this.visual);
+  }
+
+  // Découpe le mot en <span> : une par lettre (ou par mot)
+  render(word) {
+    this.srText.textContent = word;
+    this.visual.innerHTML = '';
+
+    const pieces =
+      this.options.split === 'words' ? word.split(/( )/) : Array.from(word);
+
+    for (let i = 0; i < pieces.length; i++) {
+      const span = document.createElement('span');
+      span.className = 'rotating-text__piece';
+      span.textContent = pieces[i] === ' ' ? ' ' : pieces[i];
+      this.visual.append(span);
+    }
+
+    return this.visual.children;
+  }
+
+  // Attend avant le prochain mot (sauf au dernier mot sans boucle)
+  wait() {
+    const isLast = this.index === this.options.words.length - 1;
+
+    if (this.options.words.length > 1 && (this.options.loop || !isLast)) {
+      gsap.delayedCall(this.options.interval, this.next.bind(this));
+    }
+  }
+
+  // Les lettres du mot actuel sortent
+  next() {
+    this.index = (this.index + 1) % this.options.words.length;
+
+    gsap.to(this.visual.children, {
+      yPercent: this.options.exitY,
+      duration: this.options.exitDuration,
+      ease: this.options.exitEase,
+      stagger: { each: this.options.stagger, from: this.options.staggerFrom },
+      onComplete: this.enter.bind(this),
+    });
+  }
+
+  // Le nouveau mot entre et la boîte prend sa largeur
+  enter() {
+    const startWidth = this.element.offsetWidth;
+    const pieces = this.render(this.options.words[this.index]);
+    const endWidth = this.element.offsetWidth;
+
+    gsap.fromTo(
+      this.element,
+      { width: startWidth },
+      {
+        width: endWidth,
+        duration: this.options.resizeDuration,
+        ease: this.options.resizeEase,
+        clearProps: 'width',
+      },
+    );
+
+    gsap.from(pieces, {
+      yPercent: this.options.enterY,
+      duration: this.options.enterDuration,
+      ease: this.options.enterEase,
+      stagger: { each: this.options.stagger, from: this.options.staggerFrom },
+      onComplete: this.wait.bind(this),
+    });
+  }
 }
-
-const RotatingText = forwardRef((props, ref) => {
-  const {
-    texts,
-    transition = { type: 'spring', damping: 25, stiffness: 300 },
-    initial = { y: '100%', opacity: 0 },
-    animate = { y: 0, opacity: 1 },
-    exit = { y: '-120%', opacity: 0 },
-    animatePresenceMode = 'wait',
-    animatePresenceInitial = false,
-    rotationInterval = 2000,
-    staggerDuration = 0,
-    staggerFrom = 'first',
-    loop = true,
-    auto = true,
-    splitBy = 'characters',
-    onNext,
-    mainClassName,
-    splitLevelClassName,
-    elementLevelClassName,
-    ...rest
-  } = props;
-
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-
-  const splitIntoCharacters = (text) => {
-    if (typeof Intl !== 'undefined' && Intl.Segmenter) {
-      const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
-      return Array.from(segmenter.segment(text), (segment) => segment.segment);
-    }
-    return Array.from(text);
-  };
-
-  const elements = useMemo(() => {
-    const currentText = texts[currentTextIndex];
-    if (splitBy === 'characters') {
-      const words = currentText.split(' ');
-      return words.map((word, i) => ({
-        characters: splitIntoCharacters(word),
-        needsSpace: i !== words.length - 1,
-      }));
-    }
-    if (splitBy === 'words') {
-      return currentText.split(' ').map((word, i, arr) => ({
-        characters: [word],
-        needsSpace: i !== arr.length - 1,
-      }));
-    }
-    if (splitBy === 'lines') {
-      return currentText.split('\n').map((line, i, arr) => ({
-        characters: [line],
-        needsSpace: i !== arr.length - 1,
-      }));
-    }
-
-    return currentText.split(splitBy).map((part, i, arr) => ({
-      characters: [part],
-      needsSpace: i !== arr.length - 1,
-    }));
-  }, [texts, currentTextIndex, splitBy]);
-
-  const getStaggerDelay = useCallback(
-    (index, totalChars) => {
-      const total = totalChars;
-      if (staggerFrom === 'first') return index * staggerDuration;
-      if (staggerFrom === 'last') return (total - 1 - index) * staggerDuration;
-      if (staggerFrom === 'center') {
-        const center = Math.floor(total / 2);
-        return Math.abs(center - index) * staggerDuration;
-      }
-      if (staggerFrom === 'random') {
-        const randomIndex = Math.floor(Math.random() * total);
-        return Math.abs(randomIndex - index) * staggerDuration;
-      }
-      return Math.abs(staggerFrom - index) * staggerDuration;
-    },
-    [staggerFrom, staggerDuration],
-  );
-
-  const handleIndexChange = useCallback(
-    (newIndex) => {
-      setCurrentTextIndex(newIndex);
-      if (onNext) onNext(newIndex);
-    },
-    [onNext],
-  );
-
-  const next = useCallback(() => {
-    const nextIndex =
-      currentTextIndex === texts.length - 1
-        ? loop
-          ? 0
-          : currentTextIndex
-        : currentTextIndex + 1;
-    if (nextIndex !== currentTextIndex) {
-      handleIndexChange(nextIndex);
-    }
-  }, [currentTextIndex, texts.length, loop, handleIndexChange]);
-
-  const previous = useCallback(() => {
-    const prevIndex =
-      currentTextIndex === 0
-        ? loop
-          ? texts.length - 1
-          : currentTextIndex
-        : currentTextIndex - 1;
-    if (prevIndex !== currentTextIndex) {
-      handleIndexChange(prevIndex);
-    }
-  }, [currentTextIndex, texts.length, loop, handleIndexChange]);
-
-  const jumpTo = useCallback(
-    (index) => {
-      const validIndex = Math.max(0, Math.min(index, texts.length - 1));
-      if (validIndex !== currentTextIndex) {
-        handleIndexChange(validIndex);
-      }
-    },
-    [texts.length, currentTextIndex, handleIndexChange],
-  );
-
-  const reset = useCallback(() => {
-    if (currentTextIndex !== 0) {
-      handleIndexChange(0);
-    }
-  }, [currentTextIndex, handleIndexChange]);
-
-  useImperativeHandle(
-    ref,
-    () => ({
-      next,
-      previous,
-      jumpTo,
-      reset,
-    }),
-    [next, previous, jumpTo, reset],
-  );
-
-  useEffect(() => {
-    if (!auto) return;
-    const intervalId = setInterval(next, rotationInterval);
-    return () => clearInterval(intervalId);
-  }, [next, rotationInterval, auto]);
-
-  return (
-    <motion.span
-      className={cn('text-rotate', mainClassName)}
-      {...rest}
-      layout
-      transition={transition}
-    >
-      <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
-      <AnimatePresence
-        mode={animatePresenceMode}
-        initial={animatePresenceInitial}
-      >
-        <motion.span
-          key={currentTextIndex}
-          className={cn(
-            splitBy === 'lines' ? 'text-rotate-lines' : 'text-rotate',
-          )}
-          layout
-          aria-hidden="true"
-        >
-          {elements.map((wordObj, wordIndex, array) => {
-            const previousCharsCount = array
-              .slice(0, wordIndex)
-              .reduce((sum, word) => sum + word.characters.length, 0);
-            return (
-              <span
-                key={wordIndex}
-                className={cn('text-rotate-word', splitLevelClassName)}
-              >
-                {wordObj.characters.map((char, charIndex) => (
-                  <motion.span
-                    key={charIndex}
-                    initial={initial}
-                    animate={animate}
-                    exit={exit}
-                    transition={{
-                      ...transition,
-                      delay: getStaggerDelay(
-                        previousCharsCount + charIndex,
-                        array.reduce(
-                          (sum, word) => sum + word.characters.length,
-                          0,
-                        ),
-                      ),
-                    }}
-                    className={cn('text-rotate-element', elementLevelClassName)}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-                {wordObj.needsSpace && (
-                  <span className="text-rotate-space"> </span>
-                )}
-              </span>
-            );
-          })}
-        </motion.span>
-      </AnimatePresence>
-    </motion.span>
-  );
-});
-
-RotatingText.displayName = 'RotatingText';
-export default RotatingText;

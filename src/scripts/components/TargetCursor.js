@@ -200,8 +200,8 @@ export default class TargetCursor {
   }
 
   // Coordonnées des 4 coins autour de la cible active, par rapport au curseur
-  // (qui vit dans le containing block). Appelée au survol, puis à nouveau au
-  // défilement pour que les coins suivent la cible pendant qu'on scrolle.
+  // (qui vit dans le containing block). Appelée au survol, puis à chaque image
+  // (onTick) pour que les coins suivent la cible pendant qu'on scrolle.
   updateTargetCornerPositions(target) {
     const rect = target.getBoundingClientRect();
     const { borderWidth, cornerSize } = this.constants;
@@ -278,13 +278,7 @@ export default class TargetCursor {
 
     if (!isStillOverTarget) {
       this.onTargetLeave();
-      return;
     }
-
-    // Toujours sur la cible : ses coordonnées ont changé avec le défilement,
-    // on les recalcule pour que les coins suivent (sinon ils restent figés
-    // à l'endroit où le survol a commencé).
-    this.updateTargetCornerPositions(this.activeTarget);
   }
 
   onMouseDown() {
@@ -301,6 +295,10 @@ export default class TargetCursor {
   // coins progressivement vers elle (activeStrength monte de 0 à 1).
   onTick() {
     if (!this.targetCornerPositions) return;
+
+    // Avec ScrollSmoother, la cible bouge encore après l'événement scroll :
+    // on relit sa position à chaque image pour que les coins la suivent.
+    this.updateTargetCornerPositions(this.activeTarget);
 
     const strength = this.activeStrength.current;
     if (strength === 0) return;

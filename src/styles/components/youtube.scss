@@ -1,14 +1,14 @@
 /* ==========================================================================
    YOUTUBE /
-   Vidéo YouTube (YouTube.js) : le lecteur remplace .js-video au clic sur l'image
+   Vidéo YouTube (YouTube.js) en 16:9 : l'API remplace .js-video par une iframe
    ========================================================================== */
 
 [data-component='YouTube'] {
     height: auto;
     aspect-ratio: 16 / 9;
-    cursor: pointer;
-}
 
-.youtube__poster {
-    height: 100%;
+    iframe {
+        display: block;
+        border: 0;
+    }
 }
