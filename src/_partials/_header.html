@@ -16,64 +16,66 @@
     </head>
 
     <body data-component="TargetCursor">
-        <!-- Zone header -->
-            <header class="header" data-component="Header">
-                <div class="wrapper">
-                    <a class="logo cursor-target" href="index.html">
-                      <svg class="icon icon--lg">
-                        <use xlink:href="#icon-logo"></use>
-                      </svg>
-                    </a>
-                    <nav class="header__nav">
-                        <div class="window header__window">
-                            <div class="window__header header__window-bar">
-                                <p>Naviger à la page...</p>
-                                <button class="button button--secondary header__close js-toggle cursor-target" aria-label="Fermer le menu">X</button>
+        <div id="smooth-wrapper" data-component="Scroller">
+            <div id="smooth-content">
+                <!-- Zone header -->
+                <header class="header" data-component="Header">
+                    <div class="wrapper">
+                        <a class="logo cursor-target" href="index.html">
+                          <svg class="icon icon--lg">
+                            <use xlink:href="#icon-logo"></use>
+                          </svg>
+                        </a>
+                        <nav class="header__nav">
+                            <div class="window header__window">
+                                <div class="window__header header__window-bar">
+                                    <p>Naviger à la page...</p>
+                                    <button class="button button--secondary header__close js-toggle cursor-target" aria-label="Fermer le menu">X</button>
+                                </div>
+                                <ul class="window__content header__links">
+                                    <li><a class="cursor-target" href="index.html#about" data-component="ScrambledText">À propos</a></li>
+                                    <li><a class="cursor-target" href="index.html#projets" data-component="ScrambledText">Projets</a></li>
+                                    <li><a class="cursor-target" href="contact.html" data-component="ScrambledText">Contact</a></li>
+                                    <li class="header__video"><a href="#" class="button cursor-target" data-component="ScrambledText">Vidéo de présentation</a></li>
+                                </ul>
+                                <div class="window__footer header__socials list-icons" data-component="IconLabel">
+                                    <a href="https://github.com/emilehebert" target="_blank" class="logo--link cursor-target" aria-label="GitHub">
+                                        <svg class="icon icon--lg logo--icon">
+                                            <use xlink:href="#icon-github"></use>
+                                        </svg>
+                                    </a>
+                                    <a href="https://www.youtube.com/@emile_heb" target="_blank" class="logo--link cursor-target" aria-label="YouTube">
+                                        <svg class="icon icon--lg logo--icon">
+                                            <use xlink:href="#icon-youtube"></use>
+                                        </svg>
+                                    </a>
+                                    <a href="https://www.instagram.com/emile_heb/" target="_blank" class="logo--link cursor-target" aria-label="Instagram">
+                                        <svg class="icon icon--lg logo--icon">
+                                            <use xlink:href="#icon-instagram"></use>
+                                        </svg>
+                                    </a>
+                                    <a href="https://ca.pinterest.com/hebertemile/" target="_blank" class="logo--link cursor-target" aria-label="Pinterest">
+                                        <svg class="icon icon--lg logo--icon">
+                                            <use xlink:href="#icon-pinterest"></use>
+                                        </svg>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/%C3%A9mile-h%C3%A9bert-9b5849308/" target="_blank" class="logo--link cursor-target " aria-label="LinkedIn">
+                                        <svg class="icon icon--lg logo--icon">
+                                            <use xlink:href="#icon-linkedin"></use>
+                                        </svg>
+                                    </a>
+                                    <a href="https://www.artstation.com/emile-hebert" target="_blank" class="logo--link cursor-target" aria-label="ArtStation">
+                                        <svg class="icon icon--lg logo--icon">
+                                            <use xlink:href="#icon-artstation"></use>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
-                            <ul class="window__content header__links">
-                                <li><a class="cursor-target" href="index.html#about" data-component="ScrambledText">À propos</a></li>
-                                <li><a class="cursor-target" href="index.html#projets" data-component="ScrambledText">Projets</a></li>
-                                <li><a class="cursor-target" href="contact.html" data-component="ScrambledText">Contact</a></li>
-                                <li class="header__video"><a href="#" class="button cursor-target" data-component="ScrambledText">Vidéo de présentation</a></li>
-                            </ul>
-                            <div class="window__footer header__socials list-icons" data-component="IconLabel">
-                                <a href="https://github.com/emilehebert" target="_blank" class="logo--link cursor-target" aria-label="GitHub">
-                                    <svg class="icon icon--lg logo--icon">
-                                        <use xlink:href="#icon-github"></use>
-                                    </svg>
-                                </a>
-                                <a href="https://www.youtube.com/@emile_heb" target="_blank" class="logo--link cursor-target" aria-label="YouTube">
-                                    <svg class="icon icon--lg logo--icon">
-                                        <use xlink:href="#icon-youtube"></use>
-                                    </svg>
-                                </a>
-                                <a href="https://www.instagram.com/emile_heb/" target="_blank" class="logo--link cursor-target" aria-label="Instagram">
-                                    <svg class="icon icon--lg logo--icon">
-                                        <use xlink:href="#icon-instagram"></use>
-                                    </svg>
-                                </a>
-                                <a href="https://ca.pinterest.com/hebertemile/" target="_blank" class="logo--link cursor-target" aria-label="Pinterest">
-                                    <svg class="icon icon--lg logo--icon">
-                                        <use xlink:href="#icon-pinterest"></use>
-                                    </svg>
-                                </a>
-                                <a href="https://www.linkedin.com/in/%C3%A9mile-h%C3%A9bert-9b5849308/" target="_blank" class="logo--link cursor-target " aria-label="LinkedIn">
-                                    <svg class="icon icon--lg logo--icon">
-                                        <use xlink:href="#icon-linkedin"></use>
-                                    </svg>
-                                </a>
-                                <a href="https://www.artstation.com/emile-hebert" target="_blank" class="logo--link cursor-target" aria-label="ArtStation">
-                                    <svg class="icon icon--lg logo--icon">
-                                        <use xlink:href="#icon-artstation"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </nav>
-                    <button class="header__toggle js-toggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-            </header>
+                        </nav>
+                        <button class="header__toggle js-toggle">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </header>

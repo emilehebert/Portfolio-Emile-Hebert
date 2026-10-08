@@ -4,6 +4,7 @@ import DitherVeil from './components/DitherVeil.js';
 import Header from './components/Header.js';
 import IconLabel from './components/IconLabel.js';
 import ScrambledText from './components/ScrambledText.js';
+import Scroller from './components/Scroller.js';
 import TargetCursor from './components/TargetCursor.js';
 
 export default class ComponentFactory {
@@ -16,6 +17,7 @@ export default class ComponentFactory {
       Header,
       IconLabel,
       ScrambledText,
+      Scroller,
       TargetCursor,
     };
     this.init();

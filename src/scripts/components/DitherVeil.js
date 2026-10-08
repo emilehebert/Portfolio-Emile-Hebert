@@ -56,13 +56,13 @@ export default class DitherVeil {
 
     // Chaque image utilise un contexte WebGL, et les navigateurs en limitent le nombre (~16).
     // Le dither est donc créé quand l'image approche de l'écran, et retiré quand elle s'éloigne.
-    const observer = new IntersectionObserver(this.onIntersect.bind(this), {
-      rootMargin: '300px 0px',
+    const observer = new IntersectionObserver(this.watch.bind(this), {
+      rootMargin: '0px 0px 0px 0px',
     });
     observer.observe(this.element);
   }
 
-  onIntersect(entries) {
+  watch(entries, observer) {
     if (entries[0].isIntersecting) {
       this.createDither();
     } else {
