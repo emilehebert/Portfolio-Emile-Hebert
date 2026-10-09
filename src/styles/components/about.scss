@@ -52,10 +52,12 @@
     .skill--soft {
         grid-column: 10 / 13;
         grid-row: 17 / 22;
+        z-index: -1;
     }
     .skill--hard {
         grid-column: 1 / 4;
         grid-row: 13 / 18;
+        z-index: -1;
     }
     .tool {
         grid-column: 1 / 9;
