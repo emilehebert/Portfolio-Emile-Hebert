@@ -8,9 +8,9 @@ export default class RotatingText {
     this.options = {
       words: [],
       separator: '|', // sépare les mots dans data-words
-      interval: 1, // temps où chaque mot reste affiché, en secondes
+      interval: 2, // temps où chaque mot reste affiché, en secondes
       loop: true, // false = s'arrête au dernier mot
-      split: 'letters', // ce qui s'anime un par un : 'letters' ou 'words'
+      split: 'words', // ce qui s'anime un par un : 'letters' ou 'words'
       stagger: 0.02,
 
       exitDuration: 0.2,

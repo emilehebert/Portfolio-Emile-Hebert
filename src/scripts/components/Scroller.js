@@ -11,7 +11,7 @@ export default class Scroller {
     this.options = {
       smooth: 1, // durée du rattrapage, en secondes
       effects: true, // active les data-speed
-      smoothTouch: 0.1,
+      smoothTouch: false, // au doigt : scroll natif du téléphone (plus fluide que les transforms)
       ease: 'expo.out',
     };
     this.smoother = null;
@@ -23,6 +23,36 @@ export default class Scroller {
     this.moveFixedElements();
     this.smoother = ScrollSmoother.create(this.options);
     this.initAnchors();
+    this.initLoadGuard();
+  }
+
+  // Au chargement (Précédent, rechargement), la page doit être directement à sa place.
+  // Si la page est lente à ce moment-là, ScrollSmoother pouvait repartir de 0 et glisser
+  // jusqu'à la bonne position : c'était le « saut ». Tant que le visiteur n'a pas encore
+  // touché au scroll (et au plus 3 s après le chargement), on le garde recalé.
+  initLoadGuard() {
+    this.keepInPlace = this.keepInPlace.bind(this);
+    this.stopLoadGuard = this.stopLoadGuard.bind(this);
+    gsap.ticker.add(this.keepInPlace);
+
+    const events = ['wheel', 'touchstart', 'keydown', 'pointerdown'];
+    for (let i = 0; i < events.length; i++) {
+      window.addEventListener(events[i], this.stopLoadGuard, {
+        once: true,
+        passive: true,
+      });
+    }
+    window.addEventListener('load', () => setTimeout(this.stopLoadGuard, 3000));
+  }
+
+  keepInPlace() {
+    if (Math.abs(this.smoother.scrollTop() - window.scrollY) > 1) {
+      this.smoother.scrollTop(window.scrollY);
+    }
+  }
+
+  stopLoadGuard() {
+    gsap.ticker.remove(this.keepInPlace);
   }
 
   // Les éléments fixed doivent être hors du wrapper pour rester fixes
@@ -62,7 +92,20 @@ export default class Scroller {
       history.pushState(null, '', link.hash);
     }
 
-    this.smoother.scrollTo(target, true, 'top top');
+    this.scrollToTarget(target);
+  }
+
+  // Défilement animé jusqu'à une cible (un élément ou 0 pour le haut). Au doigt,
+  // ScrollSmoother ne lisse pas le scroll : on demande au navigateur de le faire.
+  scrollToTarget(target) {
+    // ScrollTrigger.isTouch === 1 : appareil seulement tactile (même test que ScrollSmoother)
+    if (ScrollTrigger.isTouch !== 1 || this.options.smoothTouch) {
+      this.smoother.scrollTo(target, true, 'top top');
+      return;
+    }
+
+    const top = target ? this.smoother.offset(target, 'top top') : 0;
+    window.scrollTo({ top: top, behavior: 'smooth' });
   }
 
   onLoad() {
@@ -81,7 +124,7 @@ export default class Scroller {
       this.element.scrollTop = 0;
     }
 
-    this.smoother.scrollTo(target || 0, true, 'top top');
+    this.scrollToTarget(target || 0);
   }
 
   // L'élément visé par un hash (#about), ou null
