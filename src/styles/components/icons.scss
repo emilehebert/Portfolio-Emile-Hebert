@@ -86,3 +86,42 @@
     width: fit-content;
     flex-wrap: wrap;
 }
+
+/*
+ Mobile : 6 icônes remplissent la largeur
+ ========================================================================== */
+
+@media screen and (max-width: $breakpoint-xs) {
+    .list-icons:not(.header__socials) {
+        --button-max: 52px; // taille desktop
+        // largeur disponible ÷ 6
+        --button-size: min(
+            calc(
+                (
+                        100vw - var(--spacing-md) - 2 * var(--spacing-s) - 2px -
+                            5 * var(--spacing-s)
+                    ) /
+                    6
+            ),
+            var(--button-max)
+        );
+        gap: var(--spacing-s);
+
+        .logo--icon {
+            width: calc(var(--button-size) - 2px); // - la bordure
+            height: calc(var(--button-size) - 2px);
+        }
+    }
+
+    // 6 icônes et plus : grille de 6 colonnes
+    .list-icons:not(.header__socials, .hero__socials):has(> :nth-child(6)) {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, var(--button-max)));
+
+        .logo--icon {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+        }
+    }
+}

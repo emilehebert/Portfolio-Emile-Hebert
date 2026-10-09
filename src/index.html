@@ -57,8 +57,11 @@
 </section>
 
 <section class="about has-bg-grid" id="about">
-    <div class="bg-grid" style="--grid-top: 25%" data-speed="0.25" aria-hidden="true"></div>
-    <div class="bg-grid" style="--grid-top: 115%" data-speed="0.25" aria-hidden="true"></div>
+    <div class="bg-grid" style="--grid-top: 25%" data-speed="0.25"></div>
+    <div class="bg-grid" style="--grid-top: 115%" data-speed="0.25"></div>
+    <div class="halftone-marquee" data-component="HalftoneMarquee" data-text="A propos \">
+        <canvas class="halftone-marquee__canvas"></canvas>
+    </div>
     <div class="wrapper">
         <h2 data-speed="1.05">En tant que créateur multimédia...</h2>
         <div class="about__grid">
@@ -238,6 +241,9 @@
 
 <section class="projets has-bg-grid" id="projets">
     <div class="bg-grid" style="--grid-top: 90%" data-speed="0.25" aria-hidden="true"></div>
+    <div class="halftone-marquee" data-component="HalftoneMarquee" data-text="Mes projets \" aria-hidden="true">
+        <canvas class="halftone-marquee__canvas"></canvas>
+    </div>
     <div class="wrapper">
         <div class="cards">
             <div class="card">
@@ -560,4 +566,6 @@
         </div>
     </div>
 </section>
+
+<!-- Footer -->
 {% include '_partials/_footer.html' %}

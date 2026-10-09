@@ -175,6 +175,7 @@
         height: var(--bar-width);
         z-index: 10;
         transition: opacity 0.3s ease-out;
+        cursor: none;
 
         span {
             background-color: var(--color-primary);

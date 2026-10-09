@@ -11,7 +11,7 @@ import {
 const MASK_SCALE = 0.5; // le masque du curseur est dessiné à demi-résolution (plus rapide)
 const HOLD = 1.6; // garde la zone révélée bien pleine avant qu'elle commence à s'effacer
 const INTRO_DURATION = 1100; // durée de l'apparition au chargement, en ms
-const FROZEN_DPR = 1.5; // résolution max du dither figé (tactile) : moins de pixels à calculer
+const FROZEN_DPR = 1.5; // résolution du dither figé (tactile)
 
 /*
  * DitherCanvas — le <canvas> WebGL qui affiche UNE image en dither.
@@ -19,8 +19,6 @@ const FROZEN_DPR = 1.5; // résolution max du dither figé (tactile) : moins de 
  *
  *   init()     crée le canvas, les textures et les shaders, puis charge la photo
  *   render()   boucle d'animation : bouge le pinceau, dessine le masque, puis l'image
- *   pause()    arrête la boucle quand l'image est loin de l'écran (resume() la relance)
- *   freeze()   tactile : dessine UNE image, la copie dans un canvas 2D et libère le WebGL
  *   destroy()  retire le canvas et libère la carte graphique
  *
  * Le « masque » est une image invisible qui retient où le curseur est passé.
@@ -29,26 +27,22 @@ const FROZEN_DPR = 1.5; // résolution max du dither figé (tactile) : moins de 
 export default class DitherCanvas {
   constructor(container, image, options, hoverTarget) {
     this.container = container; // le .window__media
-    this.domImage = image; // l'<img> de la page (déjà téléchargée par le navigateur)
+    this.domImage = image; // l'<img> de la page
     this.options = options;
     this.hoverTarget = hoverTarget; // l'élément qui réagit au survol
 
     this.isSupported = false; // reste false si le navigateur n'a pas WebGL2
     this.isDestroyed = false;
-    this.isPaused = false; // image loin de l'écran : la boucle ne tourne plus
-    this.isFrozen = false; // tactile : le dither est figé dans un canvas 2D (plus de WebGL)
-    this.still = null; // ce canvas 2D
     this.image = null; // la photo, une fois chargée
-    this.source = null; // la photo réduite à la taille du canvas (ce qui va dans la texture)
-    this.sourceScale = 0; // échelle de cette réduction (1 = taille réelle de la photo)
+    this.source = null; // la photo réduite à la taille du canvas
+    this.still = null; // tactile : copie figée du dither
     this.width = 1; // taille du canvas, en px CSS
     this.height = 1;
 
     // Animation
     this.raf = 0; // id du requestAnimationFrame en cours (0 = boucle arrêtée)
     this.lastTime = 0;
-    this.introStart = Infinity; // Infinity = apparition pas encore commencée
-    this.isVisible = false; // l'image est-elle vraiment à l'écran ? (voir playIntro)
+    this.introStart = 0;
     this.trailEnd = 0; // moment où la traînée aura fini de s'effacer
     this.diffusedSize = ''; // taille pour laquelle Floyd / Atkinson a déjà été calculé
 
@@ -74,7 +68,7 @@ export default class DitherCanvas {
     this.createShaders();
     this.loadImage();
 
-    // Au doigt, pas de survol : le dither sera figé, sans écouteurs ni animation
+    // Au doigt, pas de survol : pas d'écouteurs
     if (!this.options.frozen) {
       this.hoverTarget.addEventListener('pointerenter', this.onMove);
       this.hoverTarget.addEventListener('pointermove', this.onMove);
@@ -241,16 +235,14 @@ export default class DitherCanvas {
     this.viewMesh = new Mesh(gl, { geometry, program: viewProgram });
   }
 
-  // On réutilise l'<img> déjà chargée par la page : pas de 2e téléchargement ni de 2e décodage.
-  // (Avant, un new Image() avec crossOrigin pouvait rater le cache et tout refaire.)
-  // decode() attend que l'image soit chargée ET décodée, sans bloquer la page.
+  // On réutilise l'<img> de la page : pas de 2e téléchargement
   loadImage() {
     this.domImage
       .decode()
-      .catch(() => {}) // image brisée : on garde simplement l'<img>
       .then(() => {
-        if (!this.isDestroyed && this.domImage.naturalWidth) this.onImageLoad();
-      });
+        if (!this.isDestroyed) this.onImageLoad();
+      })
+      .catch(() => {}); // image brisée : on garde l'<img>
   }
 
   /*
@@ -266,21 +258,56 @@ export default class DitherCanvas {
       return;
     }
 
-    // L'apparition n'est jouée que la première fois (DitherVeil retient si elle a eu lieu).
-    // Le dither est préparé en avance : elle attend que l'image soit vraiment à l'écran.
-    if (!this.options.intro) this.introStart = -INTRO_DURATION;
-    else if (this.isVisible) this.introStart = performance.now();
+    this.introStart = performance.now();
     this.start();
   }
 
-  // Appelée par DitherVeil quand l'image entre vraiment à l'écran
-  playIntro() {
-    this.isVisible = true;
+  // Réduit la photo à la taille du canvas avant de l'envoyer à la carte graphique
+  // (une photo de 8 mégapixels coûte très cher à envoyer, pour rien)
+  updateSource() {
+    const image = this.image;
+    const [coverX] = fitScale(
+      this.canvas.width,
+      this.canvas.height,
+      image.naturalWidth,
+      image.naturalHeight,
+      this.options.fit === 'contain',
+    );
+    const scale = Math.min(
+      1,
+      this.canvas.width / (coverX * image.naturalWidth),
+    );
+    const width = Math.max(1, Math.round(image.naturalWidth * scale));
 
-    if (this.image && this.introStart === Infinity) {
-      this.introStart = performance.now();
-      this.start();
-    }
+    // Déjà assez grande ? (on refait seulement si le canvas a grandi)
+    if (this.source && width <= this.source.width) return;
+
+    this.source = document.createElement('canvas');
+    this.source.width = width;
+    this.source.height = Math.max(1, Math.round(image.naturalHeight * scale));
+
+    const context = this.source.getContext('2d');
+    context.imageSmoothingQuality = 'high';
+    context.drawImage(image, 0, 0, this.source.width, this.source.height);
+
+    this.imageTexture.image = this.source;
+    this.diffusedSize = ''; // Floyd / Atkinson à refaire
+  }
+
+  // Tactile : dessine le dither UNE fois, le copie dans un canvas 2D,
+  // puis libère le WebGL. Le scroll n'a plus rien à calculer.
+  freeze() {
+    this.introStart = -INTRO_DURATION; // pas d'apparition
+    this.drawDither(performance.now());
+
+    this.still = document.createElement('canvas');
+    this.still.className = 'dither-veil__canvas dither-veil__canvas--still';
+    this.still.width = this.canvas.width;
+    this.still.height = this.canvas.height;
+    this.still.getContext('2d').drawImage(this.canvas, 0, 0); // tout de suite après le dessin
+    this.container.appendChild(this.still);
+
+    this.releaseWebGL();
   }
 
   onMove(event) {
@@ -315,9 +342,6 @@ export default class DitherCanvas {
   }
 
   onResize() {
-    // Figé : la taille de la copie ne change plus (DitherVeil la refait si besoin)
-    if (this.isFrozen) return;
-
     this.width = Math.max(1, this.container.clientWidth);
     this.height = Math.max(1, this.container.clientHeight);
     this.renderer.setSize(this.width, this.height);
@@ -348,65 +372,13 @@ export default class DitherCanvas {
     this.start();
   }
 
-  // Réduit la photo à la taille réelle du canvas (en pixels de l'écran) avant de l'envoyer
-  // à la carte graphique. Une photo de 8 mégapixels coûte cher à envoyer, et ses mipmaps
-  // aussi, alors que le canvas n'en affiche qu'une petite partie.
-  // Les mipmaps restent utiles : le shader lit un niveau plus flou (uLod) pour faire la
-  // moyenne de chaque point de dither, sinon le dither scintille.
-  updateSource() {
-    const image = this.image;
-    const [coverX] = fitScale(
-      this.canvas.width,
-      this.canvas.height,
-      image.naturalWidth,
-      image.naturalHeight,
-      this.options.fit === 'contain',
-    );
-    const scale = Math.min(
-      1,
-      this.canvas.width / (coverX * image.naturalWidth),
-    );
-
-    // Déjà assez grande (on refait seulement si le canvas a beaucoup grandi)
-    if (scale <= this.sourceScale * 1.2) return;
-    this.sourceScale = scale;
-
-    const source = document.createElement('canvas');
-    source.width = Math.max(1, Math.round(image.naturalWidth * scale));
-    source.height = Math.max(1, Math.round(image.naturalHeight * scale));
-
-    const context = source.getContext('2d');
-    context.imageSmoothingEnabled = true;
-    context.imageSmoothingQuality = 'high';
-    context.drawImage(image, 0, 0, source.width, source.height);
-
-    this.source = source;
-    this.imageTexture.image = source;
-    this.imageTexture.needsUpdate = true;
-    this.diffusedSize = ''; // Floyd / Atkinson à refaire avec la nouvelle photo
-  }
-
   /*
    Animation
    ========================================================================== */
 
-  // Image loin de l'écran : on arrête la boucle, mais on garde le contexte WebGL
-  pause() {
-    this.isPaused = true;
-    cancelAnimationFrame(this.raf);
-    this.raf = 0;
-  }
-
-  // Image de retour près de l'écran : la boucle peut reprendre
-  resume() {
-    if (!this.isPaused) return;
-    this.isPaused = false;
-    this.start();
-  }
-
   // Lance la boucle d'animation, si elle n'est pas déjà en cours
   start() {
-    if (this.raf || this.isDestroyed || this.isPaused || this.isFrozen) return;
+    if (this.raf || this.isDestroyed) return;
     this.lastTime = performance.now();
     this.raf = requestAnimationFrame(this.render);
   }
@@ -423,10 +395,7 @@ export default class DitherCanvas {
     this.drawDither(now);
 
     // La boucle continue tant qu'il se passe quelque chose, sinon elle s'arrête d'elle-même
-    const isIntroPlaying =
-      this.image &&
-      this.introStart !== Infinity &&
-      now - this.introStart < INTRO_DURATION;
+    const isIntroPlaying = this.image && now - this.introStart < INTRO_DURATION;
     const isBusy =
       this.pointer.isInside ||
       this.presence > 0.002 ||
@@ -513,7 +482,7 @@ export default class DitherCanvas {
 
     // Apparition : 0 → 1 pendant INTRO_DURATION, en ralentissant à la fin
     const intro = this.image
-      ? Math.min(1, Math.max(0, (now - this.introStart) / INTRO_DURATION))
+      ? Math.min(1, (now - this.introStart) / INTRO_DURATION)
       : 0;
     this.viewUniforms.uIntro.value = 1 - Math.pow(1 - intro, 2);
 
@@ -591,31 +560,6 @@ export default class DitherCanvas {
   }
 
   /*
-   Tactile : dither figé
-   ========================================================================== */
-
-  // Dessine le dither une seule fois (sans intro ni survol), le copie dans un canvas 2D,
-  // puis libère tout de suite le contexte WebGL. La copie reste dans la page : revenir
-  // sur l'image ne coûte plus rien, et le scroll n'a plus de WebGL à gérer.
-  freeze() {
-    this.introStart = -INTRO_DURATION; // intro déjà finie
-    this.drawDither(performance.now());
-
-    // La copie doit être faite tout de suite après le dessin (même tâche),
-    // sinon le navigateur peut avoir déjà vidé l'image WebGL
-    this.still = document.createElement('canvas');
-    this.still.className = 'dither-veil__canvas dither-veil__canvas--still';
-    this.still.width = this.canvas.width;
-    this.still.height = this.canvas.height;
-    this.still.getContext('2d').drawImage(this.canvas, 0, 0);
-    this.container.appendChild(this.still);
-
-    this.isFrozen = true;
-    this.releaseContext();
-    if (this.onFrozen) this.onFrozen();
-  }
-
-  /*
    Nettoyage
    ========================================================================== */
 
@@ -624,13 +568,11 @@ export default class DitherCanvas {
     this.isDestroyed = true;
 
     if (this.still) this.still.remove();
-    if (!this.isFrozen) this.releaseContext();
+    else this.releaseWebGL();
   }
 
-  // Arrête tout ce qui touche au WebGL et retire le canvas WebGL
-  releaseContext() {
+  releaseWebGL() {
     cancelAnimationFrame(this.raf);
-    this.raf = 0;
     this.resizeObserver.disconnect();
 
     this.hoverTarget.removeEventListener('pointerenter', this.onMove);
@@ -641,7 +583,6 @@ export default class DitherCanvas {
     this.canvas.removeEventListener('webglcontextlost', this.destroy);
 
     // Libère la carte graphique et retire le canvas WebGL
-    // (sans copie figée, l'<img> redevient visible)
     this.gl.getExtension('WEBGL_lose_context')?.loseContext();
     this.canvas.remove();
   }

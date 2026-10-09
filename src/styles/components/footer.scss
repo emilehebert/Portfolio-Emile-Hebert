@@ -87,13 +87,6 @@
         }
     }
 
-    .list-icons {
-        @media screen and (max-width: $breakpoint-xxs) {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
     /*
      Barre du bas
      ========================================================================== */

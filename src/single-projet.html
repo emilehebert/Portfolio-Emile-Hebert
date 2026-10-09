@@ -116,8 +116,10 @@
 <section class="conception has-bg-grid">
     <div class="bg-grid" style="--grid-top: 35%" data-speed="0.25" aria-hidden="true"></div>
     <div class="bg-grid" style="--grid-top: 75%" data-speed="0.25" aria-hidden="true"></div>
+    <div class="halftone-marquee" data-component="HalftoneMarquee" data-text="Etapes de conception \">
+        <canvas class="halftone-marquee__canvas"></canvas>
+    </div>
     <div class="wrapper">
-        <h3 class="title">Étapes de conception</h3>
         <div class="etapes">
             <div class="etape">
                 <div class="etape__content">
@@ -348,8 +350,10 @@
 </section>
 
 <section class="galerie">
+    <div class="halftone-marquee" data-component="HalftoneMarquee" data-text="Galerie \">
+        <canvas class="halftone-marquee__canvas"></canvas>
+    </div>
     <div class="wrapper">
-        <h3 class="title">Galerie</h3>
         <div class="photos">
             <div class="window">
                 <div class="window__content">
@@ -377,8 +381,10 @@
 
 <section class="bilan has-bg-grid">
     <div class="bg-grid" style="--grid-top: 40%" data-speed="0.25" aria-hidden="true"></div>
+    <div class="halftone-marquee" data-component="HalftoneMarquee" data-text="Bilan \ Apprentissages \">
+        <canvas class="halftone-marquee__canvas"></canvas>
+    </div>
     <div class="wrapper">
-        <h3 class="title">Bilan / Apprentissages</h3>
         <div class="accordion" data-component="Accordion" data-single-open data-force-open>
             <div class="accordion-item">
                 <div class="accordion-title is-open cursor-target">
@@ -428,7 +434,7 @@
                     <p>
                         Refaire le rendu de ma vidéo en
                         <span class="accent--primary">meilleure qualité,</span>
-                        avec un travail plus poussé sur l'éclairage et les textures pour un résultat plus fidèle à l'univers Lego Star Wars. Peaufiner aussi
+                        avec un travail plus poussé sur l'éclairage et les textures pour un résultat plus
                         <span class="accent--primary">l'audio</span>
                         pour que le montage suive mieux le rythme de l'animation.
                     </p>
@@ -439,24 +445,8 @@
     </div>
 </section>
 
-<!-- Modale : rendu final (sortie du #smooth-wrapper par Scroller.js grâce à js-fixed) -->
-<div class="modal js-fixed" id="modale-rendu" data-component="Modal">
-    <div class="window">
-        <div class="window__header">
-            <p>Rendu final de Route en boucle à l’infini</p>
-            <button class="button button--secondary js-close cursor-target" aria-label="Fermer la vidéo" data-component="ScrambledText">X</button>
-        </div>
-        <div class="window__content">
-            <div class="window__media" data-component="YouTube" data-video-id="ID_VIDEO_RENDU">
-                <div class="youtube__poster js-video">
-                    <img class="js-poster" src="assets/images/boucle-infinie/Final-Render-Thumbnail.webp" alt="Rendu final de Route en boucle à l’infini" />
-                    <svg class="play-button icon icon--md" aria-label="Lire la vidéo" role="img">
-                        <use href="#icon-play"></use>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Modale vidéo présentation -->
+{% include '_partials/_modal.html' %}
 
+<!-- Footer -->
 {% include '_partials/_footer.html' %}

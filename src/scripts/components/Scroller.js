@@ -14,6 +14,7 @@ export default class Scroller {
       smoothTouch: 0.1, // au doigt : léger lissage, synchronisé avec les data-lag (pas de jitter)
       ease: 'expo.out',
     };
+    this.arrivalDuration = 1.2; // descente à l'arrivée depuis une autre page, en secondes
     this.smoother = null;
 
     this.init();
@@ -111,9 +112,34 @@ export default class Scroller {
   onLoad() {
     const target = this.getTarget(window.location.hash);
 
-    if (target) {
-      this.smoother.scrollTo(target, false, 'top top');
+    if (!target) return;
+
+    // Arrivée par un lien d'une autre page (ex. contact → Projets) :
+    // on part du haut, puis on descend en douceur jusqu'à la section
+    if (this.isLinkArrival()) {
+      this.stopLoadGuard(); // le garde bloquerait l'animation
+      this.element.scrollTop = 0; // annule le saut du navigateur
+      this.smoother.scrollTop(0);
+
+      // Vraie animation (départ et arrivée en douceur) : le rattrapage de
+      // ScrollSmoother seul part trop vite sur une longue distance
+      gsap.to(this.smoother, {
+        scrollTop: this.smoother.offset(target, 'top top'),
+        duration: this.arrivalDuration,
+        ease: 'power2.inOut',
+      });
+      return;
     }
+
+    // Rechargement ou Précédent / Suivant : directement à la section
+    this.smoother.scrollTo(target, false, 'top top');
+  }
+
+  // true si on arrive par un lien (pas un rechargement, ni Précédent / Suivant)
+  isLinkArrival() {
+    const navigation = performance.getEntriesByType('navigation')[0];
+
+    return navigation && navigation.type === 'navigate';
   }
 
   // Arrive après le saut du navigateur : on le remplace par le nôtre

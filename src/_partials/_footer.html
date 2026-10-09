@@ -1,4 +1,7 @@
                 <footer class="footer">
+                    <div class="halftone-marquee" data-component="HalftoneMarquee" data-text="Contactez-moi \" aria-hidden="true">
+                        <canvas class="halftone-marquee__canvas"></canvas>
+                    </div>
                     <div class="wrapper">
                         <div class="footer__content">
                             <nav class="coordonates" aria-label="Coordonnées">
@@ -70,25 +73,8 @@
             </div>
         </div>
 
-        <!-- Modale : vidéo de présentation (hors du #smooth-wrapper pour rester fixe) -->
-        <div class="modal" id="modale-presentation" data-component="Modal">
-            <div class="window">
-                <div class="window__header">
-                    <p>Ma vidéo de présentation</p>
-                    <button class="button button--secondary js-close cursor-target" aria-label="Fermer la vidéo" data-component="ScrambledText">X</button>
-                </div>
-                <div class="window__content">
-                    <div class="window__media" data-component="YouTube" data-autoplay data-video-id="hrI-5WyZWZY">
-                        <div class="youtube__poster js-video">
-                            <img class="js-poster" src="assets/images/boucle-infinie/Final-Render-Thumbnail.webp" alt="Vidéo de présentation" />
-                            <svg class="play-button icon icon--md" aria-label="Lire la vidéo" role="img">
-                                <use href="#icon-play"></use>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Modale vidéo de présentation -->
+        {% include '_modal.html' %}
 
     </body>
 </html>

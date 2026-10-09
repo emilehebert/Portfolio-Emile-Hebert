@@ -83,29 +83,6 @@
         flex-direction: column;
         gap: var(--spacing-sm);
         align-items: baseline;
-
-        .list-icons {
-            @media (max-width: $breakpoint-xs) {
-                width: 100%;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                gap: var(--spacing-sm);
-
-                .logo--link {
-                    flex: 1 1 0;
-                    min-width: 0;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    aspect-ratio: 1;
-                }
-
-                .logo--icon {
-                    width: clamp(28px, 9vw, 40px);
-                    height: clamp(28px, 9vw, 40px);
-                }
-            }
-        }
     }
 
     @media (max-width: $breakpoint-sm) {

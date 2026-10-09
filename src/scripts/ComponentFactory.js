@@ -9,6 +9,7 @@ import Scroller from './components/Scroller.js';
 import TargetCursor from './components/TargetCursor.js';
 import YouTube from './components/YouTube.js';
 import RotatingText from './components/RotatingText.js';
+import HalftoneMarquee from './components/HalftoneMarquee.js';
 
 export default class ComponentFactory {
   constructor() {
@@ -25,6 +26,7 @@ export default class ComponentFactory {
       TargetCursor,
       YouTube,
       RotatingText,
+      HalftoneMarquee,
     };
     this.init();
   }
