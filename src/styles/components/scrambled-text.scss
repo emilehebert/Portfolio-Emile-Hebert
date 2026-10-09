@@ -6,3 +6,7 @@
 .scrambled-text__char {
     display: inline-block;
 }
+
+#smooth-content {
+    will-change: transform;
+}

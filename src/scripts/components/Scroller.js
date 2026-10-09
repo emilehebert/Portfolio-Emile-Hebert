@@ -10,8 +10,8 @@ export default class Scroller {
     this.element = element;
     this.options = {
       smooth: 1, // durée du rattrapage, en secondes
-      effects: ScrollTrigger.isTouch !== 1, // data-speed / data-lag : pas au doigt (ils saccadent sur iPhone)
-      smoothTouch: false, // au doigt : scroll natif du téléphone (plus fluide que les transforms)
+      effects: true, // active les data-speed et data-lag
+      smoothTouch: 0.1, // au doigt : léger lissage, synchronisé avec les data-lag (pas de jitter)
       ease: 'expo.out',
     };
     this.smoother = null;
