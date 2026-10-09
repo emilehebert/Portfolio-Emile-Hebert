@@ -16,7 +16,7 @@ gsap.registerPlugin(SplitText, ScrambleTextPlugin);
  *
  * Les options ci-dessous s'appliquent à TOUS les textes.
  * Pour changer UN seul texte, ajoute un data-attribut (voir setOptions) :
- *   data-radius="40"   data-duration="0.8"   data-speed="0.5"   data-chars="01"   data-interval="2"
+ *   data-radius="40"   data-duration="0.8"   data-speed="0.5"   data-chars="01"   data-interval="2"   data-once="false"   data-intro="true"
  */
 export default class ScrambledText {
   constructor(element, trigger) {
@@ -28,6 +28,8 @@ export default class ScrambledText {
       speed: 0.5, // vitesse à laquelle les caractères changent
       chars: 'XxÉéHh.:;,.^', // caractères utilisés pour brouiller
       interval: 1, // temps minimum entre deux brouillages, en secondes
+      once: false, // true = un seul brouillage par survol (à l'entrée du curseur)
+      intro: false, // true = le texte se brouille la 1re fois qu'il apparaît à l'écran
     };
     this.letters = [];
     this.lastScramble = 0; // moment du dernier brouillage, en ms
@@ -52,7 +54,33 @@ export default class ScrambledText {
       letter.dataset.content = letter.textContent;
     }
 
-    this.trigger.addEventListener('pointermove', this.onMove.bind(this));
+    if (this.options.once) {
+      this.trigger.addEventListener(
+        'pointerenter',
+        this.scrambleAll.bind(this),
+      );
+    } else {
+      this.trigger.addEventListener('pointermove', this.onMove.bind(this));
+    }
+
+    if (this.options.intro) this.playIntro();
+  }
+
+  // Intro : attend que le texte soit à l'écran (sinon le brouillage se joue sans qu'on le voie)
+  playIntro() {
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      observer.disconnect(); // une seule fois
+      this.scrambleAll();
+    });
+    observer.observe(this.element);
+  }
+
+  // Brouille toutes les lettres d'un coup
+  scrambleAll() {
+    for (let i = 0; i < this.letters.length; i++) {
+      this.scramble(this.letters[i], 0);
+    }
   }
 
   onMove(event) {
@@ -108,6 +136,14 @@ export default class ScrambledText {
 
     if (this.element.dataset.interval) {
       this.options.interval = Number(this.element.dataset.interval);
+    }
+
+    if ('once' in this.element.dataset) {
+      this.options.once = this.element.dataset.once !== 'false';
+    }
+
+    if ('intro' in this.element.dataset) {
+      this.options.intro = this.element.dataset.intro !== 'false';
     }
   }
 }

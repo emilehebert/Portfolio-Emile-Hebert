@@ -3,19 +3,19 @@
 <section class="hero has-bg-grid">
     <div class="bg-grid" style="--grid-top: 10%" data-speed="clamp(0.25)" aria-hidden="true"></div>
     <div class="wrapper">
-        <div class="hero__content">
+        <div class="hero__content" data-speed="1">
             <h3>
                 <span class="rotating-text accent--primary" data-component="RotatingText" data-words="Designer|Intégrateur|Animateur|Créateur">Designer</span>
                 Determiner.
             </h3>
-            <div class="nom">
-                <h1>Emile</h1>
-                <h1>Hebert</h1>
+            <div class="nom" data-lag=".00001">
+                <h1 data-component="ScrambledText" data-chars="EMILEemileXx.:;=" data-duration="2" data-intro>Emile</h1>
+                <h1 data-component="ScrambledText" data-chars="HEBERThebertXx.:;=" data-duration="2" data-intro>Hebert</h1>
             </div>
         </div>
-        <div class="hero__media">
+        <div class="hero__media" data-speed="1.2">
             <div class="window">
-                <div class="window__content"><img src="assets/images/Portfolio_portrait_web.webp" alt="Portrait" /></div>
+                <div class="window__content"><img src="assets/images/Portfolio_portrait_web.webp" alt="Portrait" data-lag=".1" /></div>
                 <div class="window__footer">
                     <p class="small">Photo : Loïc Blanchette Favela</p>
                 </div>
@@ -175,7 +175,7 @@
                 </ul>
             </div>
 
-            <div class="tool" data-speed="1.2" data-lag=".7">
+            <div class="tool" data-speed="1.2" data-lag=".3">
                 <h4 class="about--title">Logiciels et langages que je maîtrises</h4>
                 <div class="list-icons" data-component="IconLabel">
                     <a href="https://www.blender.org/" target="_blank" class="logo--link cursor-target" aria-label="Blender">

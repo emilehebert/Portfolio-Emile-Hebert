@@ -3,9 +3,10 @@
    ========================================================================== */
 
 .footer {
-    border-top: 1px solid var(--color-primary);
-    padding-top: var(--spacing-lg);
     background: var(--gradient-background);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
 
     /*
      Structure générale
