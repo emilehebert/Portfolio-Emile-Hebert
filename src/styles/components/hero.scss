@@ -5,11 +5,15 @@
 .hero {
     min-height: 750px;
     padding: var(--spacing-xl) 0 var(--spacing-lg);
+    position: relative;
+    overflow: visible;
 
     @media screen and (max-width: $breakpoint-sm) {
         padding: var(--spacing-lg) 0;
     }
     .wrapper {
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;

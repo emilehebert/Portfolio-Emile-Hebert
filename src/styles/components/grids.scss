@@ -1,0 +1,42 @@
+/* ==========================================================================
+   BG GRID /
+   Grille décorative en arrière-plan (2 rangées de cases), réutilisable
+   dans n'importe quelle section. Le parallax vient du data-speed.
+
+   Utilisation :
+     <section class="has-bg-grid">
+         <div class="bg-grid" style="--grid-top: 20%" data-speed="0.6" aria-hidden="true"></div>
+     </section>
+   ========================================================================== */
+
+// Toutes les grilles du site passent derrière tout le contenu de la page
+#smooth-content {
+    isolation: isolate;
+}
+
+// Section qui contient des grilles (sert de repère pour --grid-top)
+.has-bg-grid {
+    position: relative;
+}
+
+.bg-grid {
+    --grid-top: 0; // position verticale dans la section
+    --grid-size: 75px; // taille d'une case
+    --grid-color: var(--color-dark);
+
+    position: absolute;
+    top: var(--grid-top);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: calc(var(--grid-size) * 2 + 1px);
+    pointer-events: none;
+    background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+
+    @media screen and (max-width: $breakpoint-sm) {
+        --grid-size: 50px;
+    }
+}
