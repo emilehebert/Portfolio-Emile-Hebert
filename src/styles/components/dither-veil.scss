@@ -18,8 +18,7 @@
     height: 100%;
 }
 
-// Tactile : copie figée du dither, à plus basse résolution (voir DitherCanvas.freeze).
-// pixelated garde les points du dither nets quand la copie est agrandie à l'écran.
+// Tactile : copie figée du dither (points gardés nets)
 .dither-veil__canvas--still {
     image-rendering: pixelated;
 }
